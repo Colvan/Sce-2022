@@ -38,12 +38,15 @@ describe("This is Post API test", () => {
   test("Test Post get API", async () => {
     const response = await request(app).get("/post");
     expect(response.statusCode).toEqual(200);
+
+ 
+
   });
 
   test("Test Post post API", async () => {
     const response = await request(app)
       .post("/post")
-      .set({ authorization: "barer " + accessToken })
+      .set({ authorization: "bearer " + accessToken })
       .send({
         message: message,
         sender: sender,
@@ -57,6 +60,10 @@ describe("This is Post API test", () => {
     expect(retMessage).toEqual(message);
     expect(retSender).toEqual(sender);
     expect(retId).not.toEqual(null);
+
+    const response2 = await request(app).post("/post")
+    .set({ authorization: "bearer " + accessToken })
+    expect(response2.statusCode).toEqual(400);
   });
 
   test("Test get Post by id API", async () => {
@@ -68,6 +75,12 @@ describe("This is Post API test", () => {
     expect(retMessage).toEqual(message);
     expect(retSender).toEqual(sender);
     expect(retId2).toEqual(retId);
+
+    const response2 = await request(app).get("/post/11");
+    expect(response2.statusCode).toEqual(400);
+
+   
+   
   });
 
   test("Test get Post by sender API", async () => {
@@ -83,11 +96,24 @@ describe("This is Post API test", () => {
 
   test("Test delete post by id API", async () => {
     const response = await request(app)
-      .delete("/post/" + retId)
-      .set({ authorization: "barer " + accessToken });
+        .delete("/post/" + retId)
+        .set({ authorization: "bearer " + accessToken });
     expect(response.statusCode).toEqual(200);
 
     const response2 = await request(app).get("/post/" + retId);
     expect(response2.statusCode).toEqual(400);
+
+
+    const response3 = await request(app)
+        .delete("/post/"+"testing")
+        .set({ authorization: "bearer " + accessToken });
+    expect(response3.statusCode).toEqual(400);
+
+
   });
+
+
+
+
+
 });

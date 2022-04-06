@@ -30,7 +30,6 @@ const getPostById = async (req: Request, res: Response) => {
   if (id == null || id == undefined) {
     return res.status(400).send({ err: "no id provided" });
   }
-
   try {
     const post = await Post.findById(id);
     if (post == null) {

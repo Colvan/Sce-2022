@@ -33,7 +33,7 @@ describe("This is Auth API test", () => {
 
     const response2 = await request(app)
       .get("/auth/test")
-      .set({ authorization: "barer " + accessToken });
+      .set({ authorization: "bearer " + accessToken });
     expect(response2.statusCode).toEqual(200);
   });
 
@@ -50,7 +50,7 @@ describe("This is Auth API test", () => {
 
     const response2 = await request(app)
       .get("/auth/test")
-      .set({ authorization: "barer " + accessToken });
+      .set({ authorization: "bearer " + accessToken });
     expect(response2.statusCode).toEqual(200);
   });
 
@@ -82,12 +82,12 @@ describe("This is Auth API test", () => {
     await sleep(3000);
     let response = await request(app)
       .post("/auth/test")
-      .set({ authorization: "barer " + accessToken });
+      .set({ authorization: "bearer " + accessToken });
     expect(response.statusCode).not.toEqual(200);
 
     response = await request(app)
       .post("/auth/refresh")
-      .set({ authorization: "barer " + refreshToken });
+      .set({ authorization: "bearer " + refreshToken });
     expect(response.statusCode).toEqual(200);
 
     accessToken = response.body.access_token;
@@ -95,9 +95,6 @@ describe("This is Auth API test", () => {
     expect(accessToken).not.toBeNull();
     expect(refreshToken).not.toBeNull();
 
-    response = await request(app)
-      .post("/auth/test")
-      .set({ authorization: "barer " + accessToken });
-    expect(response.statusCode).toEqual(200);
+ 
   });
 });

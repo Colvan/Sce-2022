@@ -43,3 +43,9 @@ Content-Type: application/json
     "email" : "t2t@t.com",
     "password" : "222222"
 }
+
+###
+
+DELETE http://localhost:3000/post/id
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NDkyNjYzMDYsImV4cCI6MTY0OTI2NjMxNn0.MnaEaPIp9vPdbLgc0k_oMNJotz_8qNjYqK-AkzosJjU

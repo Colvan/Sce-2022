@@ -72,7 +72,7 @@ const createNewPost = async (req: Request, res: Response) => {
 const deletePostById = async (req: Request, res: Response) => {
   console.log("deletePostById id=" + req.params.id);
   const id = req.params.id;
-  if (id == null || id == undefined) {
+  if (id == null || id == undefined || id == "undefined") {
     return res.status(400).send({ err: "no id provided" });
   }
   try {

@@ -110,10 +110,12 @@ describe("This is Post API test", () => {
     expect(response3.statusCode).toEqual(400);
 
 
+    const response4 = await request(app)
+        .delete("/post/" + "undefined") 
+        .set({ authorization: "bearer " + accessToken });
+    expect(response4.statusCode).toEqual(400);
+
   });
-
-
-
 
 
 });

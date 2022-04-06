@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true , limit: "10mb"}));
 app.use(bodyParser.json());
 
 //routes
-import post_routes  from "./routes/post_routes"
-app.use("/post",post_routes);
+import post_routes from "./routes/post_routes";
+app.use("/post", post_routes);
 
 export = app

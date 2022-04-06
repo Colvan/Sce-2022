@@ -1,14 +1,14 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose'
 
 const postSchema = new mongoose.Schema({
     message:{
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
     sender:{
-        type:String,
-        required:true
+        type: String,
+        required: true
     }
 })
 
-module.exports = mongoose.model("Post" , postSchema);
+export = mongoose.model('Post',postSchema)

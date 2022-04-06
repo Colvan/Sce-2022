@@ -1,12 +1,12 @@
 
-const request = require('supertest')
-const app = require('../server')
-const mongoose = require('mongoose')
-const Post = require('../models/post_model')
+import request from 'supertest'
+import app from '../server'
+import mongoose from 'mongoose'
+import Post from '../models/post_model'
 
 const message = "this is my test message"
 const sender = "1234567890"
-var retId = ""
+let retId = ""
 
 beforeAll(async ()=>{
     //clear Posts collection
@@ -14,7 +14,7 @@ beforeAll(async ()=>{
 })
 
 afterAll(async ()=>{
-    // await Post.remove({"sender":sender})
+    await Post.remove({"sender":sender})
     mongoose.connection.close()
 })
 
@@ -29,6 +29,7 @@ describe("This is Post API test",()=>{
             "message" : message,
             "sender" : sender
         })
+        
         expect(response.statusCode).toEqual(200)
 
         const retMessage = response.body.message

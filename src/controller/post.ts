@@ -76,7 +76,6 @@ const deletePostById = async (req: Request, res: Response) => {
   if (id == null || id == undefined) {
     return res.status(400).send({ err: "no id provided" });
   }
-
   try {
     await Post.deleteOne({ _id: id });
     res.status(200).send();

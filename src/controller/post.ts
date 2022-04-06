@@ -30,11 +30,12 @@ const getPostById = async (req: Request, res: Response) => {
   if (id == null || id == undefined) {
     return res.status(400).send({ err: "no id provided" });
   }
+
   try {
     const post = await Post.findById(id);
     if (post == null) {
       res.status(400).send({
-        "err": "post does not exists",
+        err: "post doesnot exists",
       });
     } else {
       res.status(200).send(post);
@@ -53,10 +54,10 @@ const getPostById = async (req: Request, res: Response) => {
  */
 const createNewPost = async (req: Request, res: Response) => {
   console.log(req.body);
-
+  const sender = req.body._id;
   const post = new Post({
     message: req.body.message,
-    sender: req.body.sender,
+    sender: sender,
   });
 
   try {
@@ -85,8 +86,6 @@ const deletePostById = async (req: Request, res: Response) => {
     });
   }
 };
-
-
 export = {
   getAllPosts,
   createNewPost,

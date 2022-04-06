@@ -10,7 +10,7 @@ GET http://localhost:3000/post?sender=ivan2
 
 ###
 
-GET http://localhost:3000/post/62260bf39f8f7ff5c48ded71
+GET http://localhost:3000/post/624d8f0b439e9fe03350229f
 
 
 ###
@@ -41,5 +41,5 @@ Content-Type: application/json
 
 {
     "email" : "t2t@t.com",
-    "password" : "2282222"
+    "password" : "222222"
 }

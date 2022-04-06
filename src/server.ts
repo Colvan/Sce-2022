@@ -1,26 +1,48 @@
-//express
-import express  from 'express';
+import express from "express";
 const app = express();
-import dotenv  from "dotenv";
-dotenv.config()
-//mongoose
-import mongoose  from "mongoose";
-mongoose.connect(process.env.DATABASE_URL)
+import dotenv from "dotenv";
+dotenv.config();
+
+console.log("seerver is starting..");
+
+import mongoose from "mongoose";
+mongoose.connect(process.env.DATABASE_URL);
+
 const db = mongoose.connection;
-db.on('error', error=>{
-    console.log(error)
+db.on("error", (error) => {
+  console.error(error);
 });
-db.once('open', ()=>{
-    console.log("Connected to mongo")
-})
+db.once("open", () => {
+  console.log("connected to mongo");
+});
 
-//parser
-import bodyParser  from 'body-parser';
-app.use(bodyParser.urlencoded({extended: true , limit: "10mb"}));
-app.use(bodyParser.json());
+import bodyparser from "body-parser";
+app.use(bodyparser.urlencoded({ extended: true, limit: "1mb" }));
+app.use(bodyparser.json());
 
-//routes
 import post_routes from "./routes/post_routes";
 app.use("/post", post_routes);
 
-export = app
+import auth_routes from "./routes/auth_routes";
+app.use("/auth", auth_routes);
+
+import swaggerUI from "swagger-ui-express";
+import swaggerJsDoc from "swagger-jsdoc";
+
+if (process.env.NODE_ENV == "development") {
+  const options = {
+    definition: {
+      openapi: "3.0.0",
+      info: {
+        title: "Library API",
+        version: "1.0.0",
+        description: "A simple Express Library API",
+      },
+      servers: [{ url: "http://localhost:" + process.env.PORT }],
+    },
+    apis: ["./src/routes/*.ts"],
+  };
+  const specs = swaggerJsDoc(options);
+  app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+}
+export = app;

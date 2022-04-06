@@ -4,7 +4,7 @@
   "description": "Project1",
   "main": "app.js",
   "scripts": {
-    "test": "tsc && jest --detectOpenHandles --forceExit --coverage --silent",
+    "test": "tsc && jest --detectOpenHandles --forceExit --coverage --silent --silent",
     "start": "tsc && node dist/app.js",
     "lint": "eslint . --ext .ts",
     "devstart": "nodemon ./src/app.ts"

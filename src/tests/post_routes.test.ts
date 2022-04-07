@@ -39,7 +39,6 @@ describe("This is Post API test", () => {
     const response = await request(app).get("/post");
     expect(response.statusCode).toEqual(200);
 
- 
 
   });
 
@@ -64,6 +63,14 @@ describe("This is Post API test", () => {
     const response2 = await request(app).post("/post")
     .set({ authorization: "bearer " + accessToken })
     expect(response2.statusCode).toEqual(400);
+
+    const response3 = await request(app)
+    .post("/post")
+    .set({ authorization: "bearer " + accessToken ,  })
+  expect(response3.statusCode).toEqual(400);
+
+
+
   });
 
   test("Test get Post by id API", async () => {
@@ -76,10 +83,12 @@ describe("This is Post API test", () => {
     expect(retSender).toEqual(sender);
     expect(retId2).toEqual(retId);
 
-    const response2 = await request(app).get("/post/11");
+    const response2 = await request(app).get("/post/-1");
     expect(response2.statusCode).toEqual(400);
 
-   
+    const response3 = await request(app).get("/post/" + "undefined")
+    expect(response3.statusCode).toEqual(400);
+
    
   });
 
@@ -111,9 +120,10 @@ describe("This is Post API test", () => {
 
 
     const response4 = await request(app)
-        .delete("/post/" + "undefined") 
-        .set({ authorization: "bearer " + accessToken });
-    expect(response4.statusCode).toEqual(400);
+    .delete("/post/" + "")
+    .set({ authorization: "bearer " + accessToken });
+  expect(response4.statusCode).toEqual(400);
+
 
   });
 

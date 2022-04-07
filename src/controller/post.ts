@@ -7,7 +7,6 @@ import { Request, Response } from "express";
  */
 const getAllPosts = async (req: Request, res: Response) => {
   console.log("getAllPosts");
-
   try {
     const sender = req.query.sender;
     let posts;
@@ -19,7 +18,7 @@ const getAllPosts = async (req: Request, res: Response) => {
     res.status(200).send(posts);
   } catch (err) {
     res.status(400).send({
-      err: err.message,
+      err: err.message
     });
   }
 };
@@ -27,7 +26,7 @@ const getAllPosts = async (req: Request, res: Response) => {
 const getPostById = async (req: Request, res: Response) => {
   console.log("getPostById id=" + req.params.id);
   const id = req.params.id;
-  if (id == null || id == undefined) {
+  if (!(id) || id == "undefined") {
     return res.status(400).send({ err: "no id provided" });
   }
   try {
@@ -69,10 +68,12 @@ const createNewPost = async (req: Request, res: Response) => {
   }
 };
 
+
+
 const deletePostById = async (req: Request, res: Response) => {
   console.log("deletePostById id=" + req.params.id);
   const id = req.params.id;
-  if (id == null || id == undefined || id == "undefined") {
+  if (!(id)) {
     return res.status(400).send({ err: "no id provided" });
   }
   try {

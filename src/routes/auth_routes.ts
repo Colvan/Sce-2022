@@ -82,5 +82,7 @@ router.post("/register", Auth.register);
 router.post("/login", Auth.login);
 router.post("/refresh", Auth.renewToken);
 router.get("/test", authenticate, Auth.test);
+router.get("/logout", authenticate, Auth.logOut);
+
 
 export = router;

@@ -45,19 +45,21 @@ import authenticate from '../common/auth_middleware'
 
 /**
  * @swagger
- * /post/:
+ * /post/{id}:
  *   get:
- *     summary: Getting Post by id
+ *     summary: Getting Post by id 
  *     parameters:
- *     - name: id
- *       description: the posts id
+ *     - in: path
+ *       namee: id
+ *       description: the posts id 
  *       required: true
+ *       input: 624d8f0b439e9fe03350229f
  *       type: String
  *       id: 624d8f0b439e9fe03350229f
  *     tags: [Post]
  *     responses:
  *       200:
- *         description: Succesfly obtain a post by id  
+ *         description: successfully obtain a post by id  
  *       400:
  *         description: No id Provided
  *            
@@ -94,5 +96,7 @@ router.post('/',authenticate,Post.createNewPost)
 router.get('/:id',Post.getPostById)
 
 router.delete('/:id?',authenticate,Post.deletePostById)
+
+
 
 export = router

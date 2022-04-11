@@ -172,9 +172,32 @@ const test = async (req: Request, res: Response) => {
   res.status(StatusCodes.OK).send({});
 };
 
+/**
+ * test
+ * @param {http req} req
+ * @param {http res} res
+ */
+ const logOut = async (req: Request, res: Response) => {
+  const authHeader = req.headers["authorization"];
+  try {
+    jwt.sign(authHeader, "", { expiresIn: 1 } , (logout, err) => {
+      if (logout) {
+      res.send({msg : 'You have been Logged Out' });
+      } else {
+      res.send({msg:'Error'});
+      }
+    })
+    res.status(StatusCodes.OK).send({});
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).send({error: error.message});
+  }
+}
+
+
 export = {
   register,
   login,
   renewToken,
+  logOut,
   test,
 };

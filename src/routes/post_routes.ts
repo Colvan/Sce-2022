@@ -11,6 +11,7 @@ import authenticate from '../common/auth_middleware'
  *   name: Post
  *   description: The Posts managing API
  */
+
 /**
  * @swagger
  * components:
@@ -31,27 +32,29 @@ import authenticate from '../common/auth_middleware'
  *         sender: 'bob@gmail.com'
  *         message: 'this is a message by bob'
  */
+
 /**
  * @swagger
  * /post:
  *   get:
- *     summary: Getting all Posts
+ *     summary: Get all Posts
  *     tags: [Post]
  *     responses:
  *       200:
- *         description: Succesfly obtain all Posts             
+ *         description: Successfully obtain all Posts
  *
  */
+router.get('/',Post.getAllPosts)
 
 /**
  * @swagger
  * /post/{id}:
  *   get:
- *     summary: Getting Post by id 
+ *     summary: Get Post by id
  *     parameters:
  *     - in: path
- *       namee: id
- *       description: the posts id 
+ *       name: id
+ *       description: the post's id
  *       required: true
  *       input: 624d8f0b439e9fe03350229f
  *       type: String
@@ -59,41 +62,41 @@ import authenticate from '../common/auth_middleware'
  *     tags: [Post]
  *     responses:
  *       200:
- *         description: successfully obtain a post by id  
+ *         description: successfully obtain a post by id
  *       400:
  *         description: No id Provided
- *            
+ *
  *
  */
+router.get('/:id',Post.getPostById)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-router.get('/',Post.getAllPosts)
-
+/**
+ * @swagger
+ * /post:
+ *  post:
+ *      summary: Create a new post
+ *      tags: [Post]
+ *      security:
+ *          - bearerAuth: []
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      $ref: '#/components/schemas/Post'
+ *      responses:
+ *          200:
+ *              description: message posted successfully
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 router.post('/',authenticate,Post.createNewPost)
 
-router.get('/:id',Post.getPostById)
+
 
 router.delete('/:id?',authenticate,Post.deletePostById)
 

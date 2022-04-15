@@ -55,7 +55,7 @@ import authenticate from "../common/auth_middleware";
  *             $ref: '#/components/schemas/User'
  *     responses:
  *       200:
- *         description: Register success retuns access and refresh tokens
+ *         description: Register success returns access and refresh tokens
  *         content:
  *           application/json:
  *             schema:
@@ -74,13 +74,74 @@ import authenticate from "../common/auth_middleware";
  *               _id: "adfasdfasdfasdfsd"
  *
  */
-
-
-
-
 router.post("/register", Auth.register);
+
+/**
+ * @swagger
+ * /auth/login:
+ *  post:
+ *      summary: Login user
+ *      tags: [Auth]
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      $ref: '#/components/schemas/User'
+ *      responses:
+ *          200:
+ *              description: Login success returns the user ID and access and refresh tokens
+ *              content:
+ *                  application/json:
+ *                   schema:
+ *                      access_token:
+ *                          type: string
+ *                          description: The refresh Token
+ *                      refresh_token:
+ *                          type: string
+ *                          description: The refresh Token
+ *                      _id:
+ *                          type: string
+ *                          description: The user id
+ *                      example:
+ *                          access_token: '12341234...'
+ *                          refresh_token: '234234234...'
+ *                          _id: "adfasdfasdfasdfsd"
+ */
 router.post("/login", Auth.login);
+
+/**
+ * @swagger
+ * /auth/refresh:
+ *  post:
+ *      summary: Refresh access token using the refresh token
+ *      tags: [Auth]
+ *      security:
+ *          - bearerAuth: []
+ *      responses:
+ *       200:
+ *         description: success returns access and refresh tokens and user id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               access_token:
+ *                 type: string
+ *                 description: The refresh Token
+ *               refresh_token:
+ *                 type: string
+ *                 description: The refresh Token
+ *               _id:
+ *                 type: string
+ *                 description: The user id
+ *             example:
+ *               access_token: '21341234...'
+ *               refresh_token: '123412341...'
+ *               _id: "adfasdfasdfasdfsd"
+ *
+ */
 router.post("/refresh", Auth.renewToken);
+
+
 router.get("/test", authenticate, Auth.test);
 router.get("/logout", authenticate, Auth.logOut);
 

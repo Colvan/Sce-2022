@@ -4,6 +4,21 @@ import {StatusCodes} from "http-status-codes";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+const generateTokens = (userId: string): [string, string] => {
+    const accessToken = jwt.sign(
+        {_id: userId},
+        process.env.ACCESS_TOKEN_SECRET,
+        {expiresIn: process.env.TOKEN_EXPIRATION}
+    );
+    const refreshToken = jwt.sign(
+        {_id: userId},
+        process.env.REFRESH_TOKEN_SECRET,
+        {}
+    );
+    return [accessToken, refreshToken]
+
+}
+
 /**
  * register
  * @param {http req} req
@@ -37,16 +52,7 @@ const register = async (req: Request, res: Response) => {
     try {
         const newUser = await user.save();
         //login - create access token
-        const accessToken = await jwt.sign(
-            {_id: newUser._id},
-            process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn: process.env.TOKEN_EXPIRATION}
-        );
-        const refreshToken = await jwt.sign(
-            {_id: newUser._id},
-            process.env.REFRESH_TOKEN_SECRET,
-            {}
-        );
+        const [accessToken, refreshToken] = generateTokens(newUser._id)
         newUser.refreshToken = refreshToken;
         await newUser.save();
         res.status(StatusCodes.OK).send({
@@ -91,16 +97,7 @@ const login = async (req: Request, res: Response) => {
         }
 
         //calc accesstoken
-        const accessToken = await jwt.sign(
-            {_id: user._id},
-            process.env.ACCESS_TOKEN_SECRET,
-            {expiresIn: process.env.TOKEN_EXPIRATION}
-        );
-        const refreshToken = await jwt.sign(
-            {_id: user._id},
-            process.env.REFRESH_TOKEN_SECRET,
-            {}
-        );
+        const [accessToken, refreshToken] = generateTokens(user._id)
         user.refreshToken = refreshToken;
         await user.save();
         res.status(StatusCodes.OK).send({
@@ -140,16 +137,7 @@ const renewToken = async (req: Request, res: Response) => {
                 await user.save();
                 return res.status(StatusCodes.FORBIDDEN).send({error: err.message});
             }
-            const accessToken = await jwt.sign(
-                {_id: userId},
-                process.env.ACCESS_TOKEN_SECRET,
-                {expiresIn: process.env.TOKEN_EXPIRATION}
-            );
-            const refreshToken = await jwt.sign(
-                {_id: userId},
-                process.env.REFRESH_TOKEN_SECRET,
-                {}
-            );
+            const [accessToken, refreshToken] = generateTokens(user._id)
             user.refreshToken = refreshToken;
             await user.save();
             res.status(StatusCodes.OK).send({

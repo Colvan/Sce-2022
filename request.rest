@@ -49,3 +49,7 @@ Content-Type: application/json
 DELETE http://localhost:3000/post/id
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NDkyNjYzMDYsImV4cCI6MTY0OTI2NjMxNn0.MnaEaPIp9vPdbLgc0k_oMNJotz_8qNjYqK-AkzosJjU
+
+###
+GET http://localhost:3000/post/user/bob@gmail.com
+Content-Type: application/json

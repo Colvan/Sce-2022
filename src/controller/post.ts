@@ -2,9 +2,9 @@ import Post from "../models/post_model";
 import { Request, Response } from "express";
 /**
  * Gets all the posts
- * @param {http request} req
- * @param {http response} res
- */
+ * * @param {http request} req
+ *  * @param {http response} res
+ *  */
 const getAllPosts = async (req: Request, res: Response) => {
   console.log("getAllPosts");
   try {
@@ -23,6 +23,11 @@ const getAllPosts = async (req: Request, res: Response) => {
   }
 };
 
+/**
+ * Get a specific post by ID
+ * @param {http request} req
+ * @param {http response} res
+ */
 const getPostById = async (req: Request, res: Response) => {
   console.log("getPostById id=" + req.params.id);
   const id = req.params.id;
@@ -44,6 +49,28 @@ const getPostById = async (req: Request, res: Response) => {
     });
   }
 };
+
+/**
+ * Get posts written by the specified user
+ * @param {http request} req
+ * @param {http response} res
+ */
+const getPostByUser = async (req: Request, res: Response) => {
+  const user = req.params.user
+  if(!user) {
+    return res.status(400).send("no user Id provided")
+  }
+  try {
+    const posts = await Post.find({ sender: user })
+    if(!posts || posts.length <= 0) {
+      res.status(200).send("No posts by user found")
+    } else {
+      return res.status(200).send(posts)
+    }
+  } catch (err) {
+    res.status(400).send( {err: err.message})
+  }
+}
 
 /**
  * Create new post
@@ -69,7 +96,11 @@ const createNewPost = async (req: Request, res: Response) => {
 };
 
 
-
+/**
+ * Delete posts by ID
+ * @param req
+ * @param res
+ */
 const deletePostById = async (req: Request, res: Response) => {
   console.log("deletePostById id=" + req.params.id);
   const id = req.params.id;
@@ -85,9 +116,11 @@ const deletePostById = async (req: Request, res: Response) => {
     });
   }
 };
+
 export = {
   getAllPosts,
   createNewPost,
   getPostById,
+  getPostByUser,
   deletePostById,
 };

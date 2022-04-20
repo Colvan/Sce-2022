@@ -32,9 +32,7 @@ const register = async (req: Request, res: Response) => {
 
     if (
         email == null ||
-        email == undefined ||
-        password == null ||
-        password == undefined
+        password == null
     ) {
         res.status(StatusCodes.BAD_REQUEST);
     }
@@ -120,7 +118,7 @@ const renewToken = async (req: Request, res: Response) => {
     console.log("renewToken");
     // validate refresh token
     let token = req.headers["authorization"];
-    if (token == undefined || token == null) {
+    if (token == undefined) {
         return res.sendStatus(StatusCodes.FORBIDDEN);
     }
     token = token.split(" ")[1];

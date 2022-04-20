@@ -46,6 +46,10 @@ import authenticate from '../common/auth_middleware'
  */
 router.get('/',Post.getAllPosts)
 
+
+router.get('/user/:user', Post.getPostByUser)
+
+
 /**
  * @swagger
  * /post/{id}:

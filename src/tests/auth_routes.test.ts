@@ -97,4 +97,20 @@ describe("This is Auth API test", () => {
 
  
   });
+
+  test("LogOut", async () => {
+    const response = await request(app)
+    .post("/auth/login")
+    .send({ email: email, password: password });
+    expect(response.statusCode).toEqual(200);
+    const accessToken = response.body.access_token;
+    expect(accessToken).not.toBeNull();
+    const response2 = await request(app)
+    .post("/auth/logout")
+    .send({ authorization: "bearer " + accessToken });
+    expect(response2.statusCode).not.toEqual(200);
+
+  });
+
+
 });

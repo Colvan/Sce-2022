@@ -166,14 +166,14 @@ const test = async (req: Request, res: Response) => {
 const logOut = async (req: Request, res: Response) => {
     const token = req.headers["authorization"];
     try {
-        jwt.sign(token, "", {expiresIn: 1}, (logout, err) => {
+        jwt.sign(token, "", {expiresIn: process.env.TOKEN_EXPIRATION_AFTER_LOGOUT}, async (err, logout) => {
             if (logout) {
                 res.send({msg: 'You have been Logged Out'});
             } else {
-                res.send({msg: 'Error'});
+                res.send({msg: err});
             }
         })
-        return res.sendStatus(StatusCodes.OK).send({});
+        return res.sendStatus(StatusCodes.OK);
     } catch (error) {
         return res.sendStatus(StatusCodes.BAD_REQUEST).send({error:error.message})
     }

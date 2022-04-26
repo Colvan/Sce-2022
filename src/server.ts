@@ -34,9 +34,9 @@ if (process.env.NODE_ENV == "development") {
     definition: {
       openapi: "3.0.0",
       info: {
-        title: "Library API",
+        title: "SCE 20222 simple REST backend API",
         version: "1.0.0",
-        description: "A simple Express Library API",
+        description: "A simple REST backend API with JWT authentication using refresh token",
       },
       servers: [{ url: "http://localhost:" + process.env.PORT }],
     },
@@ -45,4 +45,7 @@ if (process.env.NODE_ENV == "development") {
   const specs = swaggerJsDoc(options);
   app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 }
-export = app;
+
+import http from 'http';
+const server = http.createServer(app);
+export = server;

@@ -1,16 +1,27 @@
 import request from "supertest";
-import app from "../server";
+import server from "../app"
 import mongoose from "mongoose";
 import Post from "../models/post_model";
 import User from "../models/user_model";
+import { closeSocketServer } from "../socket_server"
+
 
 const message = "this is my test message";
 let sender = "1234567890";
 let retId = "";
 
-const email = "test@a.com";
+const email = "posttest@a.com";
 const password = "1234567890";
 let accessToken = "";
+
+const serverCleanup = async () => {
+    return new Promise<void>((resolve) => {
+        server.close(() => {
+            resolve()
+        })
+    })
+  }
+
 
 beforeAll(async () => {
   //clear Posts collection
@@ -21,12 +32,14 @@ beforeAll(async () => {
 afterAll(async () => {
   await Post.remove({ sender: sender });
   await User.remove({ email: email });
+  await closeSocketServer()
+  await serverCleanup()
   mongoose.connection.close();
 });
 
 describe("This is Post API test", () => {
   test("Test register to get access token", async () => {
-    const response = await request(app)
+    const response = await request(server)
       .post("/auth/register")
       .send({ email: email, password: password });
     expect(response.statusCode).toEqual(200);
@@ -36,14 +49,14 @@ describe("This is Post API test", () => {
   });
 
   test("Test Post get API", async () => {
-    const response = await request(app).get("/post");
+    const response = await request(server).get("/post");
     expect(response.statusCode).toEqual(200);
 
 
   });
 
   test("Test Post post API", async () => {
-    const response = await request(app)
+    const response = await request(server)
       .post("/post")
       .set({ authorization: "bearer " + accessToken })
       .send({
@@ -60,11 +73,11 @@ describe("This is Post API test", () => {
     expect(retSender).toEqual(sender);
     expect(retId).not.toEqual(null);
 
-    const response2 = await request(app).post("/post")
+    const response2 = await request(server).post("/post")
     .set({ authorization: "bearer " + accessToken })
     expect(response2.statusCode).toEqual(400);
 
-    const response3 = await request(app)
+    const response3 = await request(server)
     .post("/post")
     .set({ authorization: "bearer " + accessToken ,  })
   expect(response3.statusCode).toEqual(400);
@@ -74,7 +87,7 @@ describe("This is Post API test", () => {
   });
 
   test("Test get Post by id API", async () => {
-    const response = await request(app).get("/post/" + retId);
+    const response = await request(server).get("/post/" + retId);
     expect(response.statusCode).toEqual(200);
     const retMessage = response.body.message;
     const retSender = response.body.sender;
@@ -83,17 +96,17 @@ describe("This is Post API test", () => {
     expect(retSender).toEqual(sender);
     expect(retId2).toEqual(retId);
 
-    const response2 = await request(app).get("/post/-1");
+    const response2 = await request(server).get("/post/-1");
     expect(response2.statusCode).toEqual(400);
 
-    const response3 = await request(app).get("/post/" + "undefined")
+    const response3 = await request(server).get("/post/" + "undefined")
     expect(response3.statusCode).toEqual(400);
 
    
   });
 
   test("Test get Post by sender API", async () => {
-    const response = await request(app).get("/post?sender=" + sender);
+    const response = await request(server).get("/post?sender=" + sender);
     expect(response.statusCode).toEqual(200);
     const retMessage = response.body[0].message;
     const retSender = response.body[0].sender;
@@ -104,22 +117,22 @@ describe("This is Post API test", () => {
   });
 
   test("Test delete post by id API", async () => {
-    const response = await request(app)
+    const response = await request(server)
         .delete("/post/" + retId)
         .set({ authorization: "bearer " + accessToken });
     expect(response.statusCode).toEqual(200);
 
-    const response2 = await request(app).get("/post/" + retId);
+    const response2 = await request(server).get("/post/" + retId);
     expect(response2.statusCode).toEqual(400);
 
 
-    const response3 = await request(app)
+    const response3 = await request(server)
         .delete("/post/"+"testing")
         .set({ authorization: "bearer " + accessToken });
     expect(response3.statusCode).toEqual(400);
 
 
-    const response4 = await request(app)
+    const response4 = await request(server)
     .delete("/post/" + "")
     .set({ authorization: "bearer " + accessToken });
   expect(response4.statusCode).toEqual(400);

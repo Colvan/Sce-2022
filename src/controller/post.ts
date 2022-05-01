@@ -1,12 +1,16 @@
-import Post from "../models/post_model";
 import { Request, Response } from "express";
+
+import Post from "../models/post_model";
+import { broadcastPostMessage } from "../socket_server"
+import { CtrlReq, CtrlRes } from "../common/req_res_wrapper"
 /**
  * Gets all the posts
  * * @param {http request} req
  *  * @param {http response} res
  *  */
-const getAllPosts = async (req: Request, res: Response) => {
+ export const getAllPosts = async (req: Request, res: Response) => {
   console.log("getAllPosts");
+
   try {
     const sender = req.query.sender;
     let posts;
@@ -18,7 +22,7 @@ const getAllPosts = async (req: Request, res: Response) => {
     res.status(200).send(posts);
   } catch (err) {
     res.status(400).send({
-      err: err.message
+      err: err.message,
     });
   }
 };
@@ -28,12 +32,13 @@ const getAllPosts = async (req: Request, res: Response) => {
  * @param {http request} req
  * @param {http response} res
  */
-const getPostById = async (req: Request, res: Response) => {
+ export const getPostById = async (req: Request, res: Response) => {
   console.log("getPostById id=" + req.params.id);
   const id = req.params.id;
-  if (!(id) || id == "undefined") {
+  if (id == null || id == undefined) {
     return res.status(400).send({ err: "no id provided" });
   }
+
   try {
     const post = await Post.findById(id);
     if (post == null) {
@@ -55,8 +60,8 @@ const getPostById = async (req: Request, res: Response) => {
  * @param {http request} req
  * @param {http response} res
  */
-const getPostByUser = async (req: Request, res: Response) => {
-  const user = req.params.user
+export const getPostByUser = async (req: Request , res: Response ) => {
+  const user = req.params.user;
   if(!user) {
     return res.status(400).send("no user Id provided")
   }
@@ -77,7 +82,7 @@ const getPostByUser = async (req: Request, res: Response) => {
  * @param {http request} req
  * @param {http response} res
  */
-const createNewPost = async (req: Request, res: Response) => {
+ export const createNewPost = async (req: Request | CtrlReq, res: Response | CtrlRes) => {
   console.log(req.body);
   const sender = req.body._id;
   const post = new Post({
@@ -87,7 +92,9 @@ const createNewPost = async (req: Request, res: Response) => {
 
   try {
     const newPost = await post.save();
-    res.status(200).send(newPost);
+    //send notification to all other users
+    broadcastPostMessage({ sender: sender, message: req.body.message, _id: post._id})
+    res.status(200).send({ sender: sender, message: req.body.message, _id: post._id });
   } catch (err) {
     res.status(400).send({
       err: err.message,
@@ -101,12 +108,13 @@ const createNewPost = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-const deletePostById = async (req: Request, res: Response) => {
+ export const deletePostById = async (req: Request, res: Response) => {
   console.log("deletePostById id=" + req.params.id);
   const id = req.params.id;
-  if (!(id)) {
+  if (id == null || id == undefined) {
     return res.status(400).send({ err: "no id provided" });
   }
+
   try {
     await Post.deleteOne({ _id: id });
     res.status(200).send();
@@ -117,10 +125,4 @@ const deletePostById = async (req: Request, res: Response) => {
   }
 };
 
-export = {
-  getAllPosts,
-  createNewPost,
-  getPostById,
-  getPostByUser,
-  deletePostById,
-};
+

@@ -1,14 +1,13 @@
-
-import { Server, } from "socket.io"
 import http from 'http';
 import commonHandlers from "./events/common"
 import postHandlers from "./events/post_events"
 import jwt from "jsonwebtoken"
-import {createClient} from "redis"
-import { createAdapter } from "@socket.io/redis-adapter";
+import { Server } from 'socket.io';
+import { createClient } from 'redis';
+import { createAdapter } from '@socket.io/redis-adapter';
 
 let socketServer:Server
-const pubClient = createClient({ url: "redis://localhost:6379" });
+const pubClient = createClient({ url: process.env.REDIS_URL });
 const subClient = pubClient.duplicate();
 
 export const closeSocketServer = async ()=>{
@@ -27,6 +26,7 @@ export const initSocketServer =  async (server: http.Server): Promise<Server> =>
     await pubClient.connect()
     await subClient.connect() 
     socketServer.adapter(createAdapter(pubClient, subClient));
+    
 
     socketServer.use(async (socket, next) => {
         let token = socket.handshake.auth.token;

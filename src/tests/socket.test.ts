@@ -73,7 +73,7 @@ describe("Socket IO server test", () => {
     const openClientConnection = (userInfo: UserInfo, done) => {
         userInfo.clientSocket = Client("http://localhost:" + process.env.PORT, {
             auth: {
-                token: 'barrer ' + userInfo.accessToken
+                token: 'bearer ' + userInfo.accessToken
             }
         })
         userInfo.clientSocket.on("connect", () => {
@@ -97,10 +97,10 @@ describe("Socket IO server test", () => {
         user1.clientSocket.emit("common:echo", "echo message")
     });
     test("test ims event", (done) => {
-        user2.clientSocket.on("ims:reciev_message", (arg) => {
+        user2.clientSocket.on("ims:recieve_message", (arg) => {
             expect(arg.from).toBe(user1.id);
             expect(arg.message).toBe("this is IMS message");
-            user2.clientSocket.removeAllListeners("ims:reciev_message")
+            user2.clientSocket.removeAllListeners("ims:recieve_message")
             done();
         });
         user1.clientSocket.emit("ims:send_message", { to: user2.id, from: user1.id, message: "this is IMS message" })

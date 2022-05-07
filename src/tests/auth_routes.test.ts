@@ -27,11 +27,11 @@ const serverCleanup = async () => {
 
 beforeAll(async () => {
   //clear Posts collection
-  await User.remove({ email: email });
+  await User.deleteMany({ email: email });
 });
 
 afterAll(async () => {
-  await User.remove({ email: email });
+  await User.deleteMany({ email: email });
   await closeSocketServer()
   await serverCleanup()
   mongoose.connection.close();

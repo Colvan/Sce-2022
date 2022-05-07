@@ -14,7 +14,7 @@ export = (io:Server, socket:Socket) => {
     const imsSendMessageHandler = (payload:ImsMessage) => {
         console.log("imsSendMessageHandler " + payload.from + " " + payload.to)
         const to = payload.to
-        io.to(to).emit("ims:reciev_message",payload) 
+        io.to(to).emit("ims:receive_message",payload)
     }
     socket.on("common:echo", echoHandler);
     socket.on("ims:send_message", imsSendMessageHandler);

@@ -97,10 +97,10 @@ describe("Socket IO server test", () => {
         user1.clientSocket.emit("common:echo", "echo message")
     });
     test("test ims event", (done) => {
-        user2.clientSocket.on("ims:recieve_message", (arg) => {
+        user2.clientSocket.on("ims:receive_message", (arg) => {
             expect(arg.from).toBe(user1.id);
             expect(arg.message).toBe("this is IMS message");
-            user2.clientSocket.removeAllListeners("ims:recieve_message")
+            user2.clientSocket.removeAllListeners("ims:receive_message")
             done();
         });
         user1.clientSocket.emit("ims:send_message", { to: user2.id, from: user1.id, message: "this is IMS message" })
@@ -138,7 +138,7 @@ describe("Socket IO server test", () => {
         })
         request(server)
             .post("/post")
-            .set({ authorization: "barer " + user1.accessToken })
+            .set({ authorization: "bearer " + user1.accessToken })
             .send({
                 message: "this is the post message",
                 sender: "",

@@ -35,7 +35,7 @@ import { CtrlReq, CtrlRes } from "../common/req_res_wrapper"
  export const getPostById = async (req: Request, res: Response) => {
   console.log("getPostById id=" + req.params.id);
   const id = req.params.id;
-  if (id == null || id == undefined) {
+  if (id == null) {
     return res.status(400).send({ err: "no id provided" });
   }
 
@@ -43,7 +43,7 @@ import { CtrlReq, CtrlRes } from "../common/req_res_wrapper"
     const post = await Post.findById(id);
     if (post == null) {
       res.status(400).send({
-        err: "post doesnot exists",
+        err: "post does not exists",
       });
     } else {
       res.status(200).send(post);
@@ -92,7 +92,7 @@ export const getPostByUser = async (req: Request , res: Response ) => {
 
   try {
     const newPost = await post.save();
-    //send notification to all other users
+    //send notification to all others users
     broadcastPostMessage({ sender: sender, message: req.body.message, _id: post._id})
     res.status(200).send({ sender: sender, message: req.body.message, _id: post._id });
   } catch (err) {
@@ -111,7 +111,7 @@ export const getPostByUser = async (req: Request , res: Response ) => {
  export const deletePostById = async (req: Request, res: Response) => {
   console.log("deletePostById id=" + req.params.id);
   const id = req.params.id;
-  if (id == null || id == undefined) {
+  if (id == null) {
     return res.status(400).send({ err: "no id provided" });
   }
 

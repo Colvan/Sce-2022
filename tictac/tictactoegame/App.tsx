@@ -2,7 +2,7 @@ import React from 'react';
 import { FC, useState } from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, StatusBar } from 'react-native';
 
-const playersSetColor: number[][] = [[],[]];
+const playersSetColor: number[][] = [[],[],[]];
 
 const Brick: FC<{ callback: (ind: number) => void, index: number,  turn: { player: number } }> = ({ callback, index, turn }) => {
   const [player, setPlayer] = useState<number>(0)
@@ -57,11 +57,22 @@ const App: FC = () => {
 
   const clickHandler = (ind: number) => {
     console.log("click App " + ind)
+    playersSetColor[2].push(ind);
     playersSetColor[turn.player-1].push(ind);
     playersSetColor[turn.player-1].sort(function(a,b){return a-b});
-    let checkwinner =checkIfSomeOneWon(playersSetColor[turn.player-1]);
+    let checkwinner = checkIfSomeOneWon(playersSetColor[turn.player-1]);
+    if(playersSetColor[2].length == 9){
+      alert("Draw")
+      setTimeout(function(){
+        window.location.reload();
+     }, 1000);
+
+    }
     if(checkwinner){
       alert("player " + turn.player + " won")
+      setTimeout(function(){
+        window.location.reload();
+     }, 1000);
     }
     if (turn.player == 1) {
       turn.player = 2
@@ -71,8 +82,7 @@ const App: FC = () => {
   }
 
   const reloadHandler = () => {
-    console.log("click reloadHandler ")
-    
+    window .location.reload();   
   }
 
   return (

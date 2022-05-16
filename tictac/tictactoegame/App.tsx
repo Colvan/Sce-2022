@@ -64,7 +64,7 @@ const App: FC = () => {
     if(playersSetColor[2].length == 9){
       alert("Draw")
       setTimeout(function(){
-        window.location.reload();
+        global.window.location.reload();
      }, 1000);
 
     }
@@ -82,7 +82,7 @@ const App: FC = () => {
   }
 
   const reloadHandler = () => {
-    window .location.reload();   
+    global.window.location.reload()
   }
 
   return (

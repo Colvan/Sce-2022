@@ -83,7 +83,7 @@ const XmixDrix: FC = () => {
 
   const [bricks, setValue] = useState<Array<BrickState>>([])
   for (let i = 0; i < 9; i++) {
-    bricks.push({ index: i, state: 0, turn: turn, onClick: handleClick })
+    bricks.push({ index: i, state: 0, turn: turn, onClick: handleClick})
   }
 
   const restart = () => {

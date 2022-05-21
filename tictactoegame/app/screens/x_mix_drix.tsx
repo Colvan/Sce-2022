@@ -51,6 +51,8 @@ const Brick: FC<{ brickState: BrickState }> = ({ brickState }) => {
   )
 }
 
+let numberOfTurns = 1
+
 const XmixDrix: FC = () => {
   const [turn, setTurn] = useState<{ player: number }>({ player: 1 })
   const [num, setNum] = useState<number>(0) //force refresh
@@ -59,7 +61,6 @@ const XmixDrix: FC = () => {
     xplay = 0, oplay = 1, xwin = 2, owin = 3, nowin
   }
   const [bannerDisplay, setBannerDisplay] = useState<BannerDisplay>(BannerDisplay.xplay)
-
 
   const bottomBanner = [
     require("../assets/xplay.gif"),
@@ -70,7 +71,8 @@ const XmixDrix: FC = () => {
   ]
   const handleClick = (index: number) => {
     let win = checkWin()
-    if (win == 0) {
+    if (win == 0 && numberOfTurns<9) {
+      numberOfTurns++
       turn.player += 1
       if (turn.player == 3) {
         turn.player = 1
@@ -80,6 +82,7 @@ const XmixDrix: FC = () => {
       }
     }
   }
+
 
   const [bricks, setValue] = useState<Array<BrickState>>([])
   for (let i = 0; i < 9; i++) {
@@ -94,6 +97,7 @@ const XmixDrix: FC = () => {
     setBannerDisplay(BannerDisplay.xplay)
     setNum(num + 1)
     turn.player = 1
+    numberOfTurns = 1
   }
 
   const checkWin = () => {
@@ -124,6 +128,10 @@ const XmixDrix: FC = () => {
       } else {
         setBannerDisplay(BannerDisplay.owin)
       }
+    }
+    else if(numberOfTurns === 9){
+      setTopMessage("Tie")
+      setBannerDisplay(BannerDisplay.nowin)
     }
     return winner
   }

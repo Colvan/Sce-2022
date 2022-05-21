@@ -108,9 +108,9 @@ const XmixDrix: FC = () => {
       winner = bricks[0].state
     } else if (bricks[1].state != 0 && bricks[1].state == bricks[4].state && bricks[4].state == bricks[7].state) {
       winner = bricks[1].state
-    } else if (bricks[2].state != 0 && bricks[5].state == bricks[5].state && bricks[5].state == bricks[8].state) {
+    } else if (bricks[2].state != 0 && bricks[2].state == bricks[5].state && bricks[5].state == bricks[8].state) {
       winner = bricks[2].state
-    } else if (bricks[0].state != 0 && bricks[0].state == bricks[5].state && bricks[4].state == bricks[8].state) {
+    } else if (bricks[0].state != 0 && bricks[0].state == bricks[4].state && bricks[4].state == bricks[8].state) {
       winner = bricks[0].state
     } else if (bricks[2].state != 0 && bricks[2].state == bricks[4].state && bricks[4].state == bricks[6].state) {
       winner = bricks[2].state

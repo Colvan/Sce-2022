@@ -55,7 +55,7 @@ import authenticate from "../common/auth_middleware";
  *             $ref: '#/components/schemas/User'
  *     responses:
  *       200:
- *         description: Register success returns access and refresh tokens
+ *         description: Login success retuns access and refresh tokens and user id
  *         content:
  *           application/json:
  *             schema:
@@ -69,58 +69,62 @@ import authenticate from "../common/auth_middleware";
  *                 type: string
  *                 description: The user id
  *             example:
- *               access_token: 'bob@gmail.com'
- *               refresh_token: '123456'
+ *               access_token: '223412341...'
+ *               refresh_token: '123456...'
  *               _id: "adfasdfasdfasdfsd"
  *
  */
+
 router.post("/register", Auth.register);
 
 /**
  * @swagger
  * /auth/login:
- *  post:
- *      summary: Login user
- *      tags: [Auth]
- *      requestBody:
- *          required: true
- *          content:
- *              application/json:
- *                  schema:
- *                      $ref: '#/components/schemas/User'
- *      responses:
- *          200:
- *              description: Login success returns the user ID and access and refresh tokens
- *              content:
- *                  application/json:
- *                   schema:
- *                      access_token:
- *                          type: string
- *                          description: The refresh Token
- *                      refresh_token:
- *                          type: string
- *                          description: The refresh Token
- *                      _id:
- *                          type: string
- *                          description: The user id
- *                      example:
- *                          access_token: '12341234...'
- *                          refresh_token: '234234234...'
- *                          _id: "adfasdfasdfasdfsd"
+ *   post:
+ *     summary: login user
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Register success retuns access and refresh tokens and user id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               access_token:
+ *                 type: string
+ *                 description: The refresh Token
+ *               refresh_token:
+ *                 type: string
+ *                 description: The refresh Token
+ *               _id:
+ *                 type: string
+ *                 description: The user id
+ *             example:
+ *               access_token: '12341234...'
+ *               refresh_token: '234234234...'
+ *               _id: "adfasdfasdfasdfsd"
+ *
  */
 router.post("/login", Auth.login);
+
 
 /**
  * @swagger
  * /auth/refresh:
- *  post:
- *      summary: Refresh access token using the refresh token
- *      tags: [Auth]
- *      security:
- *          - bearerAuth: []
- *      responses:
+ *   get:
+ *     summary: refresh access token using the refresh token
+ *     tags: [Auth]
+ * 
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
  *       200:
- *         description: success returns access and refresh tokens and user id
+ *         description: success retuns access and refresh tokens and user id
  *         content:
  *           application/json:
  *             schema:
@@ -139,26 +143,23 @@ router.post("/login", Auth.login);
  *               _id: "adfasdfasdfasdfsd"
  *
  */
-router.post("/refresh", Auth.renewToken);
+router.get("/refresh", Auth.renewToken);
 
-
-router.get("/test", authenticate, Auth.test);
 
 /**
  * @swagger
- * /auth/logout:
- *  post:
- *      summary: Log out the user
- *      tags: [Auth]
- *      security:
- *          - bearerAuth: []
- *      responses:
- *          200:
- *              description: You have been Logged Out
- *          400:
- *              description:
+ * /auth/test:
+ *   get:
+ *     summary: test access token
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: success 
+ *
  */
-router.post("/logout", authenticate, Auth.logOut);
-
+router.get("/test", authenticate, Auth.test);
+router.get("/test2", Auth.test);
 
 export = router;

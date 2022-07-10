@@ -5,7 +5,7 @@ import authenticate from '../common/auth_middleware'
 import multer from 'multer'
 
 
-const base = "http://192.168.49.145:3000/"
+const base = "http://localhost:3000/"
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')

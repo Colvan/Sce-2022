@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router()
-import { getAllPosts, getPostById, deletePostById, createNewPost,getPostByUser } from '../controller/post'
+import { getAllPosts, getPostById, deletePostById, createNewPost,getPostByUser,updateUsersPost } from '../controller/post'
 import authenticate from '../common/auth_middleware'
 
 
@@ -103,6 +103,8 @@ router.post('/',authenticate,createNewPost)
 
 
 router.delete('/:id?',authenticate,deletePostById)
+
+router.patch('/:id?',authenticate ,updateUsersPost)
 
 
 

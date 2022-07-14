@@ -17,10 +17,11 @@ GET http://localhost:3000/post/624d8f0b439e9fe03350229f
 
 POST http://localhost:3000/post
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTc4MTM3NzUsImV4cCI6MTY1NzgxNDA3NX0.ZMbmT7F1ymaHQBnXAu_Cq4bvZe-NiHjUBMEAhYotwoU
 
 {
     "message" : "this is my first message",
-    "sender" : "ivan2"
+    "sender" : "t2t@t.com"
 }
 
 ###
@@ -48,8 +49,19 @@ Content-Type: application/json
 
 DELETE http://localhost:3000/post/id
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NDkyNjYzMDYsImV4cCI6MTY0OTI2NjMxNn0.MnaEaPIp9vPdbLgc0k_oMNJotz_8qNjYqK-AkzosJjU
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NDkyNjYzMDYsImV4cCI6MTY0OTI2NjMxNn0.MnaEaPIp9vPdbLgc0k_oMNJotz_8qNjYqK-AkzosJjU
 
 ###
 GET http://localhost:3000/post/user/bob@gmail.com
 Content-Type: application/json
+
+
+###
+
+PATCH  http://localhost:3000/post/62d03b1968ddd90458954764
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTc4MTM2ODUsImV4cCI6MTY1NzgxMzk4NX0.tVbRw7ivBNwyszLZq3i6f9K5dgNvMMlgEH9eA-kZ9bU
+
+{
+    "message" : "this is a change message"
+}

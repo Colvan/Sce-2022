@@ -126,3 +126,34 @@ export const getPostByUser = async (req: Request , res: Response ) => {
 };
 
 
+
+/**
+ * update existing users post
+ * @param {http request} req
+ * @param {http response} res
+ */
+
+ export const updateUsersPost = async (req: Request , res: Response ) => {
+  console.log("getPostById id=" + req.params.id);
+   const id = req.params.id;
+   const msg = req.params.msg;
+   if (id == null) {
+     return res.status(400).send({ err: "no id provided" });
+   }
+ 
+   try {
+     const post = await Post.findById(id);
+     if (post == null) {
+       res.status(400).send({
+         err: "post does not exists",
+       });
+     } else {
+       post.overwrite({id:id,message:msg})
+       res.status(200).send(post);
+     }
+   } catch (err) {
+     res.status(400).send({
+       err: err.message,
+     });
+   }
+ };

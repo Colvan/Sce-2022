@@ -136,7 +136,7 @@ export const getPostByUser = async (req: Request , res: Response ) => {
  export const updateUsersPost = async (req: Request , res: Response ) => {
   console.log("getPostById id=" + req.params.id);
    const id = req.params.id;
-   const msg = req.params.msg;
+   const msg = req.params.message;
    if (id == null) {
      return res.status(400).send({ err: "no id provided" });
    }

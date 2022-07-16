@@ -104,7 +104,7 @@ router.post('/',authenticate,createNewPost)
 
 router.delete('/:id?',authenticate,deletePostById)
 
-router.patch('/:id?',authenticate ,updateUsersPost)
+router.post('/updatepost/:id',authenticate ,updateUsersPost)
 
 
 

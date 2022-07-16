@@ -17,7 +17,7 @@ GET http://localhost:3000/post/624d8f0b439e9fe03350229f
 
 POST http://localhost:3000/post
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTc4MTM3NzUsImV4cCI6MTY1NzgxNDA3NX0.ZMbmT7F1ymaHQBnXAu_Cq4bvZe-NiHjUBMEAhYotwoU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTc5NTc3ODMsImV4cCI6MTY1Nzk1ODA4M30.GGpHperGHwYalB2YZE-W4J63_WE4wcbWBpLzVNPFWy8
 
 {
     "message" : "this is my first message",
@@ -47,9 +47,9 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/post/id
+DELETE http://localhost:3000/post/624d9fb2c53ba7cebaf1dc36
 Content-Type: application/json
-Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NDkyNjYzMDYsImV4cCI6MTY0OTI2NjMxNn0.MnaEaPIp9vPdbLgc0k_oMNJotz_8qNjYqK-AkzosJjU
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTc5NjAxNTYsImV4cCI6MTY1Nzk2MDQ1Nn0.naClBXVFl_ifozBEZ6pY1Ls6yEdcNc_6OL4xzK8Q8Z4
 
 ###
 GET http://localhost:3000/post/user/bob@gmail.com
@@ -58,10 +58,10 @@ Content-Type: application/json
 
 ###
 
-PATCH  http://localhost:3000/post/62d03b1968ddd90458954764
+POST  http://localhost:3000/post/updatepost/624d9fb2c53ba7cebaf1dc36
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTc4MTM2ODUsImV4cCI6MTY1NzgxMzk4NX0.tVbRw7ivBNwyszLZq3i6f9K5dgNvMMlgEH9eA-kZ9bU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTc5NjAzOTIsImV4cCI6MTY1Nzk2MDY5Mn0.9v2DzzJOVRVpAgfQMCY05uNddlMpYOqdGocoQqCVOtc
 
 {
-    "message" : "this is a change message"
+    "message" : "this is a new message"
 }

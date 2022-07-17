@@ -5,7 +5,10 @@ export type Student = {
     name:String,
     imageUrl: String
 }
-
+export type User = {
+    email:String,
+    password:String
+}
 
 const getAllStudents = async ()=>{
     const students = await StudentApi.getAllStudents()
@@ -21,8 +24,14 @@ const uploadImage = async (imageUri:String)=> {
     return url
 }
 
+const logIn = async (email:String,password:String)=> {
+    const login = await StudentApi.logIn(email,password)
+    return login;
+}
+
 export default {
     addStudents,
     getAllStudents,
-    uploadImage
+    uploadImage,
+    logIn
 }

@@ -52,8 +52,25 @@ const uploadImage = async (imageUri:String)=> {
     }
 }
 
+
+const logIn = async (email:String,password:String) => {
+    const res = await apiClient.post("/auth/login", {
+        email: email,
+        password: password
+    })
+    if (res.ok) {
+        console.log("user loged in");
+        return res.data;
+    } else {
+        console.log("login failed")
+    }
+} 
+
+
+
 export default {
     getAllStudents,
     addStudents,
-    uploadImage
+    uploadImage,
+    logIn
 }

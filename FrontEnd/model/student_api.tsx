@@ -65,6 +65,18 @@ const logIn = async (email:String,password:String) => {
         console.log("login failed")
     }
 } 
+const register = async (email:String,password:String) => {
+    const res = await apiClient.post("/auth/register", {
+        email: email,
+        password: password
+    })
+    if (res.ok) {
+        console.log("user registered ");
+        return res.data;
+    } else {
+        console.log("register failed");
+    }
+} 
 
 
 
@@ -72,5 +84,6 @@ export default {
     getAllStudents,
     addStudents,
     uploadImage,
-    logIn
+    logIn,
+    register
 }

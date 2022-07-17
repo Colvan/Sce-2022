@@ -28,10 +28,15 @@ const logIn = async (email:String,password:String)=> {
     const login = await StudentApi.logIn(email,password)
     return login;
 }
+const register = async (email:String,password:String)=> {
+     await StudentApi.register(email,password);
+    
+}
 
 export default {
     addStudents,
     getAllStudents,
     uploadImage,
-    logIn
+    logIn,
+    register
 }

@@ -68,9 +68,10 @@ const App: FC = () => {
         //     </Tab.Navigator>
         // </NavigationContainer>
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Log In Page" component={logInScreen} />
-            </Stack.Navigator>
+            <Tab.Navigator>
+                   <Tab.Screen name="Log In Page" component={logInScreen}></Tab.Screen>
+                   <Tab.Screen name="Register" component={registerScreen}></Tab.Screen>
+            </Tab.Navigator>
       </NavigationContainer>
     )
 }

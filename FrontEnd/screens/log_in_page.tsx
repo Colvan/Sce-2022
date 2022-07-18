@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollVie
 import StudnetModel, { User } from "../model/student_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
-import { createStackNavigator } from '@react-navigation/stack';
 
 
 
@@ -13,7 +12,6 @@ const OpeningPage: FC<{ navigation: any, route: any }> = ({ navigation, route })
     const [password, setPassword] = useState<String>("")
 
 
-const Stack = createStackNavigator();
 
     const onSubmit = async () => {
         setIsLoading(true)
@@ -23,16 +21,16 @@ const Stack = createStackNavigator();
          
         }
         var logedin = await StudnetModel.logIn(user.email , user.password);
-        return logedin;
+        if(logedin){
+            return logedin
+        }else{
+            alert("No Such User")
         }
-        const openRegisterPage = ()=>{
-            navigation.navigate("registerScreen")
         }
     return (
         
         <ScrollView>
         <View >
-      
             <TextInput style={styles.textInput}
                 onChangeText={setEmail}
                 placeholder="email"
@@ -50,13 +48,6 @@ const Stack = createStackNavigator();
             <View style={styles.activity_indicator}>
                 <ActivityIndicator visible={isLoading}></ActivityIndicator>
             </View>
-
-            <TouchableHighlight
-                    onPress={()=>openRegisterPage()}
-                    underlayColor={COLORS.clickBackground}
-                    style={styles.button}>
-                    <Text style={styles.button_text}>Register</Text>
-                </TouchableHighlight>
         </View>
     </ScrollView>
 

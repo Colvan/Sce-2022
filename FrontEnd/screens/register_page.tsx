@@ -40,21 +40,12 @@ const RegisterPage: FC<{ navigation: any, route: any }> = ({ navigation, route }
                 style={styles.button}>
                 <Text style={styles.button_text}>Register</Text>
             </TouchableHighlight>
+            <Text>Register Via Google</Text>
             <TouchableHighlight
-                underlayColor={COLORS.clickBackground}
-                style={styles.button}>
-                <Text style={styles.button_text}>Register Via Google</Text>
+                style={styles.google_icon}>
+                <Image  source={require('../assets/google.png')}></Image>
             </TouchableHighlight>
-            <View style={styles.activity_indicator}>
-                <ActivityIndicator visible={isLoading}></ActivityIndicator>
-            </View>
-            <TouchableOpacity>
-            <View style={styles.google_icon}>
-              <Image
-                    source={require('../assets/google.png')}
-              />
-            </View>
-          </TouchableOpacity>
+          
         </View>
     </ScrollView>
     )
@@ -99,7 +90,10 @@ const styles = StyleSheet.create({
     },
     google_icon:{
         justifyContent: "center",
-        bottom: "0px"
+        margin: 12,
+        backgroundColor: 'transparent',
+        textAlign: "center"
+
     }
 })
 

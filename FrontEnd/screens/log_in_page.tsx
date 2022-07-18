@@ -1,14 +1,19 @@
 import React, { FC, useState } from "react"
-import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView } from "react-native"
+import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView,TouchableOpacity } from "react-native"
 import StudnetModel, { User } from "../model/student_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 
 const OpeningPage: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [email, setEmail] = useState<String>("")
     const [password, setPassword] = useState<String>("")
+
+
+const Stack = createStackNavigator();
 
     const onSubmit = async () => {
         setIsLoading(true)
@@ -19,10 +24,12 @@ const OpeningPage: FC<{ navigation: any, route: any }> = ({ navigation, route })
         }
         var logedin = await StudnetModel.logIn(user.email , user.password);
         return logedin;
-    }
-
-
+        }
+        const openRegisterPage = ()=>{
+            navigation.navigate("registerScreen")
+        }
     return (
+        
         <ScrollView>
         <View >
       
@@ -38,13 +45,22 @@ const OpeningPage: FC<{ navigation: any, route: any }> = ({ navigation, route })
                 onPress={onSubmit}
                 underlayColor={COLORS.clickBackground}
                 style={styles.button}>
-                <Text style={styles.button_text}>Save</Text>
+                <Text style={styles.button_text}>Sign In</Text>
             </TouchableHighlight>
             <View style={styles.activity_indicator}>
                 <ActivityIndicator visible={isLoading}></ActivityIndicator>
             </View>
+
+            <TouchableHighlight
+                    onPress={()=>openRegisterPage()}
+                    underlayColor={COLORS.clickBackground}
+                    style={styles.button}>
+                    <Text style={styles.button_text}>Register</Text>
+                </TouchableHighlight>
         </View>
     </ScrollView>
+
+    
     )
 }
 const styles = StyleSheet.create({
@@ -85,6 +101,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",      
         position: "absolute"
     }
+   
 })
 
 export default OpeningPage;

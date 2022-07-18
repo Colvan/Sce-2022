@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react"
-import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView } from "react-native"
+import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView,TouchableOpacity } from "react-native"
 import StudnetModel, { User } from "../model/student_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
@@ -48,6 +48,13 @@ const RegisterPage: FC<{ navigation: any, route: any }> = ({ navigation, route }
             <View style={styles.activity_indicator}>
                 <ActivityIndicator visible={isLoading}></ActivityIndicator>
             </View>
+            <TouchableOpacity>
+            <View style={styles.google_icon}>
+              <Image
+                    source={require('../assets/google.png')}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
     </ScrollView>
     )
@@ -89,6 +96,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",      
         position: "absolute"
+    },
+    google_icon:{
+        justifyContent: "center",
+        bottom: "0px"
     }
 })
 

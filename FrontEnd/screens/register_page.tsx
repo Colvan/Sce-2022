@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react"
 import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView,TouchableOpacity } from "react-native"
-import StudnetModel, { User } from "../model/student_model"
+import StudentModel, { User } from "../model/student_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
 
@@ -17,8 +17,15 @@ const RegisterPage: FC<{ navigation: any, route: any }> = ({ navigation, route }
             password: password
          
         }
-        var register = await StudnetModel.register(user.email , user.password);
-        return register;
+        var register = await StudentModel.register(user.email , user.password);
+        if(register){
+            setIsLoading(false)
+            return register;
+        }else{
+            setIsLoading(false)
+            alert("failed to register")
+        }
+  
     }
 
 

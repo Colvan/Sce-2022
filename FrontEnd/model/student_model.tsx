@@ -29,7 +29,8 @@ const logIn = async (email:String,password:String)=> {
     return login;
 }
 const register = async (email:String,password:String)=> {
-     await StudentApi.register(email,password);
+    const register = await StudentApi.register(email,password);
+     return register;
     
 }
 

@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react"
 import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView,TouchableOpacity } from "react-native"
-import StudnetModel, { User } from "../model/student_model"
+import StudentModel, { User } from "../model/student_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
 
@@ -20,10 +20,12 @@ const OpeningPage: FC<{ navigation: any, route: any }> = ({ navigation, route })
             password: password
          
         }
-        var logedin = await StudnetModel.logIn(user.email , user.password);
+        var logedin = await StudentModel.logIn(user.email , user.password);
         if(logedin){
+            setIsLoading(false)
             return logedin
         }else{
+            setIsLoading(false)
             alert("No Such User")
         }
         }

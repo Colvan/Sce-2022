@@ -25,16 +25,16 @@ const getAllStudents = async () => {
     return students
 }
 
-const addStudents = async (st: Student) => {
+const adddNewPost = async (st: Student) => {
     const res = await apiClient.post("/post", {
         sender: st.id,
         message: st.name,
         imageUrl: st.imageUrl
     })
     if (res.ok) {
-        console.log("addStudent success")
+        console.log(st.id +"Added New Post ")
     } else {
-        console.log("addStudent fail")
+        console.log("add bew post fail")
     }
 } 
 
@@ -82,7 +82,7 @@ const register = async (email:String,password:String) => {
 
 export default {
     getAllStudents,
-    addStudents,
+    adddNewPost,
     uploadImage,
     logIn,
     register

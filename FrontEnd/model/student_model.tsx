@@ -15,8 +15,8 @@ const getAllStudents = async ()=>{
     return students
 } 
 
-const addStudents = async (st:Student)=>{
-    await StudentApi.addStudents(st)
+const adddNewPost = async (st:Student)=>{
+    await StudentApi.adddNewPost(st)
 } 
 
 const uploadImage = async (imageUri:String)=> {
@@ -35,7 +35,7 @@ const register = async (email:String,password:String)=> {
 }
 
 export default {
-    addStudents,
+    adddNewPost,
     getAllStudents,
     uploadImage,
     logIn,

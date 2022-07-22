@@ -11,7 +11,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import HomeScreen from "./screens/home_screen";
 import AboutScreen from "./screens/about_screen";
 import DetailsScreen from "./screens/details_screen";
-import AddStudentScreen from "./screens/add_student_screen";
+import AddPostScreen from "./screens/add_new_post";
 import logInScreen from "./screens/log_in_page";
 import COLORS from "./constants/colors"
 import registerScreen from "./screens/register_page";
@@ -42,7 +42,7 @@ const HomeStackScreen: FC<{ navigation: any, route: any }> = ({ navigation, rout
                     headerRight: ()=><ToBarAddButton onClick={()=>openAddStudent()}></ToBarAddButton>
                 }} />
             <HomeStack.Screen name="Details" component={DetailsScreen} />
-            <HomeStack.Screen name="AddStudent" component={AddStudentScreen} />
+            <HomeStack.Screen name="AddPost" component={AddPostScreen} />
         </HomeStack.Navigator>
     );
 }

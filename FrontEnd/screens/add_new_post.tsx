@@ -26,7 +26,7 @@ const AddStudent: FC<{ navigation: any, route: any }> = ({ navigation, route }) 
             student.imageUrl = url
             console.log("saving image fimish url : " + url) 
         }
-        await StudnetModel.addStudents(student)
+        await StudnetModel.adddNewPost(student)
         navigation.goBack()
     }
 
@@ -42,12 +42,13 @@ const AddStudent: FC<{ navigation: any, route: any }> = ({ navigation, route }) 
                     <CustomImagePicker onImageSelected={onImageSelected}></CustomImagePicker>
                 </View>
                 <TextInput style={styles.textInput}
+                //need to replace id with current logedin users id
                     onChangeText={setId}
                     placeholder="ID"
                     keyboardType="default"></TextInput>
                 <TextInput style={styles.textInput}
                     onChangeText={setName}
-                    placeholder="Name"
+                    placeholder="Message"
                     keyboardType="default"></TextInput>
                 <TouchableHighlight
                     onPress={onSave}

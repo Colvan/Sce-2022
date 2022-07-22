@@ -1,34 +1,34 @@
 import apiClient from "./ApiClient"
-import { Student } from "./student_model"
+import { Post } from "./student_model"
 import FormData from 'form-data'
 
-const getAllStudents = async () => {
+const getAllPosts = async () => {
     console.log("getAllStudents")
     const res = await apiClient.get("/post")
-    let students = Array<Student>()
+    let posts = Array<Post>()
     if (res.ok) {
         console.log("getAllStudents res.data " + res.data)
         if (res.data){
             res.data.forEach((item)=>{
                 console.log("getAllStudents item " + item.message)
-                const st:Student = {
+                const st:Post = {
                     id: item.sender,
-                    name: item.message,
+                    message: item.message,
                     imageUrl: item.imageUrl
                 }
-                students.push(st)
+                posts.push(st)
             })
         }
     } else {
         console.log("getAllStudents fail")
     }
-    return students
+    return posts
 }
 
-const adddNewPost = async (st: Student) => {
+const adddNewPost = async (st: Post) => {
     const res = await apiClient.post("/post", {
         sender: st.id,
-        message: st.name,
+        message: st.message,
         imageUrl: st.imageUrl
     })
     if (res.ok) {
@@ -81,7 +81,7 @@ const register = async (email:String,password:String) => {
 
 
 export default {
-    getAllStudents,
+    getAllPosts,
     adddNewPost,
     uploadImage,
     logIn,

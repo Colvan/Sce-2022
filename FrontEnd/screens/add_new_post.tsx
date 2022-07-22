@@ -2,22 +2,22 @@ import React, { FC, useState } from "react"
 import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView } from "react-native"
 
 import COLORS from "../constants/colors"
-import StudnetModel, { Student } from "../model/student_model"
+import StudnetModel, { Post } from "../model/student_model"
 import ActivityIndicator from "./component/custom_activity_indicator"
 import CustomImagePicker from "./component/custom_image_picker"
 
 
-const AddStudent: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+const AddPost: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
     const [id, setId] = useState<String>("")
-    const [name, setName] = useState<String>("")
+    const [message, setName] = useState<String>("")
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [imageUri,setImageUri] = useState<String>("")
 
     const onSave = async () => {
         setIsLoading(true)
-        var student: Student = {
+        var student: Post = {
             id: id,
-            name: name,
+            message: message,
             imageUrl: ''
         }
         if(imageUri != ""){
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddStudent
+export default AddPost

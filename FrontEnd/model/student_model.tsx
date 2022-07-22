@@ -1,8 +1,8 @@
 import StudentApi from "./student_api"
 
-export type Student = {
+export type Post = {
     id: String,
-    name:String,
+    message:String,
     imageUrl: String
 }
 export type User = {
@@ -10,12 +10,12 @@ export type User = {
     password:String
 }
 
-const getAllStudents = async ()=>{
-    const students = await StudentApi.getAllStudents()
-    return students
+const getAllPosts = async ()=>{
+    const posts = await StudentApi.getAllPosts()
+    return posts
 } 
 
-const adddNewPost = async (st:Student)=>{
+const adddNewPost = async (st:Post)=>{
     await StudentApi.adddNewPost(st)
 } 
 
@@ -36,7 +36,7 @@ const register = async (email:String,password:String)=> {
 
 export default {
     adddNewPost,
-    getAllStudents,
+    getAllPosts,
     uploadImage,
     logIn,
     register

@@ -2,20 +2,20 @@ import React, { FC, useEffect, useState } from "react"
 import { View, Text, Image, StyleSheet, FlatList, TouchableHighlight } from "react-native"
 
 import COLORS from "../constants/colors"
-import StudentModel,{Student} from "../model/student_model"
+import StudentModel,{Post} from "../model/student_model"
 import ActivityIndicator from "./component/custom_activity_indicator"
 
-const StudentListRow: FC<{ student: Student, onItemClick: (id:String)=>void }> = ({ student, onItemClick }) => {
+const StudentListRow: FC<{ post: Post, onItemClick: (id:String)=>void }> = ({ post, onItemClick }) => {
     return (
         <TouchableHighlight
-            onPress={()=>{onItemClick(student.id)}}
+            onPress={()=>{onItemClick(post.id)}}
             underlayColor={COLORS.clickBackground}>
             <View style={styles.list_row_container}>
-                { student.imageUrl != "" &&  <Image source={{uri: student.imageUrl.toString()}} style={styles.list_row_image}></Image>}
-                { student.imageUrl == "" &&  <Image source={require("../assets/avatar.jpeg")} style={styles.list_row_image}></Image>}
+                { post.imageUrl != "" &&  <Image source={{uri: post.imageUrl.toString()}} style={styles.list_row_image}></Image>}
+                { post.imageUrl == "" &&  <Image source={require("../assets/avatar.jpeg")} style={styles.list_row_image}></Image>}
                 <View style={styles.list_row_text_container}>
-                    <Text style={styles.list_row_name}>{student.name}</Text>
-                    <Text style={styles.list_row_id}>{student.id}</Text>
+                    <Text style={styles.list_row_name}>{post.message}</Text>
+                    <Text style={styles.list_row_id}>{post.id}</Text>
                 </View>
             </View>
         </TouchableHighlight>
@@ -24,7 +24,7 @@ const StudentListRow: FC<{ student: Student, onItemClick: (id:String)=>void }> =
 
 
 const Home: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
-    const [data, setData] = useState<Array<Student>>()
+    const [data, setData] = useState<Array<Post>>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const openDetails = (id:String)=>{
@@ -40,7 +40,7 @@ const Home: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
 
     const reloadData = async ()=>{
         setIsLoading(true)
-        const studentData = await StudentModel.getAllStudents()
+        const studentData = await StudentModel.getAllPosts()
         setData(studentData)
         setIsLoading(false)
     }
@@ -50,7 +50,7 @@ const Home: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
             <FlatList
                 data={data}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => (<StudentListRow student={item} 
+                renderItem={({ item }) => (<StudentListRow post={item} 
                             onItemClick={openDetails} />)}
             ></FlatList>
             <View style={styles.activity_indicator}>

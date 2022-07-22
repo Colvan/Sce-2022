@@ -1,8 +1,9 @@
 import React,{FC, useState} from "react"
 import {View, Text} from "react-native"
+import {NavigationProps} from "../App";
 
 
-const Details: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+const Details: FC<NavigationProps> = ({ navigation, route }) => {
     const [id, setId] = useState<String>("")
     React.useEffect(()=>{
         if (route.params?.id){

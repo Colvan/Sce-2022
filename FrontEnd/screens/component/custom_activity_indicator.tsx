@@ -1,7 +1,11 @@
 import { FC, useRef } from "react"
 import LottieView from "lottie-react-native"
 
-const ActivityIndicator: FC<{ visible: boolean }> = ({ visible }) => {
+type ActivityIndicatorProps = {
+    visible: boolean
+}
+
+const ActivityIndicator: FC<ActivityIndicatorProps> = ({ visible }) => {
     const animation = useRef(null);
     if (!visible) {
         return null

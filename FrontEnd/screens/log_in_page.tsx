@@ -3,10 +3,11 @@ import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollVie
 import StudentModel, { User } from "../model/student_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
+import {NavigationProps} from "../App";
 
 
 
-const OpeningPage: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+const OpeningPage: FC<NavigationProps> = ({ navigation, route }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [email, setEmail] = useState<String>("")
     const [password, setPassword] = useState<String>("")

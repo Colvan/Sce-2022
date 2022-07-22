@@ -5,7 +5,11 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import * as ImagePicker from 'expo-image-picker';
 import colors from "../../constants/colors";
 
-const CustomImagePicker:FC<{onImageSelected:(uri:String)=>void}> = ({onImageSelected})=>{
+type CustomImagePickerProps = {
+    onImageSelected:(uri:String)=>void
+}
+
+const CustomImagePicker:FC<CustomImagePickerProps> = ({onImageSelected})=>{
     const [imageUri,setImageUri] = useState("")
 
     useEffect(()=>{

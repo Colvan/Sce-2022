@@ -5,9 +5,10 @@ import COLORS from "../constants/colors"
 import StudnetModel, { Post } from "../model/student_model"
 import ActivityIndicator from "./component/custom_activity_indicator"
 import CustomImagePicker from "./component/custom_image_picker"
+import {NavigationProps} from "../App";
 
 
-const AddPost: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
     const [id, setId] = useState<String>("")
     const [message, setName] = useState<String>("")
     const [isLoading, setIsLoading] = useState<boolean>(false)

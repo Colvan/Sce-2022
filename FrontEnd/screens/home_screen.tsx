@@ -4,8 +4,14 @@ import { View, Text, Image, StyleSheet, FlatList, TouchableHighlight } from "rea
 import COLORS from "../constants/colors"
 import StudentModel,{Post} from "../model/student_model"
 import ActivityIndicator from "./component/custom_activity_indicator"
+import {NavigationProps} from "../App";
 
-const StudentListRow: FC<{ post: Post, onItemClick: (id:String)=>void }> = ({ post, onItemClick }) => {
+type StudentListRowProps = {
+    post: Post,
+    onItemClick: (id: String) => void
+}
+
+const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
     return (
         <TouchableHighlight
             onPress={()=>{onItemClick(post.id)}}
@@ -23,7 +29,7 @@ const StudentListRow: FC<{ post: Post, onItemClick: (id:String)=>void }> = ({ po
 }
 
 
-const Home: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+const Home: FC<NavigationProps> = ({ navigation, route }) => {
     const [data, setData] = useState<Array<Post>>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -50,7 +56,7 @@ const Home: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
             <FlatList
                 data={data}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => (<StudentListRow post={item} 
+                renderItem={({ item }) => (<StudentListRow post={item}
                             onItemClick={openDetails} />)}
             ></FlatList>
             <View style={styles.activity_indicator}>
@@ -95,7 +101,7 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         alignItems: "center",
-        justifyContent: "center",      
+        justifyContent: "center",
         position: "absolute"
     }
 })

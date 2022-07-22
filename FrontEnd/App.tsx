@@ -22,6 +22,11 @@ const HomeStack = createNativeStackNavigator();
 
 const Stack = createStackNavigator();
 
+export type NavigationProps = {
+    navigation: any,
+    route: any
+}
+
 const ToBarAddButton:FC<{onClick:()=>void}>=({onClick})=>{
     return(
         <TouchableHighlight onPress={()=>{onClick()}}
@@ -31,7 +36,7 @@ const ToBarAddButton:FC<{onClick:()=>void}>=({onClick})=>{
     )
 }
 
-const HomeStackScreen: FC<{ navigation: any, route: any }> = ({ navigation, route }) => {
+const HomeStackScreen: FC<NavigationProps> = ({ navigation, route }) => {
     const openAddStudent = ()=>{
         navigation.navigate("AddStudent")
     }

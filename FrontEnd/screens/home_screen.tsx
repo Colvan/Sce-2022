@@ -78,12 +78,12 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         elevation: 4,
         borderRadius: 3,
-        marginLeft: 8,
+        marginLeft: 6,
         marginRight: 8
     },
     list_row_image: {
         height: 130,
-        width: 130,
+        width: 100,
         margin: 10,
         borderRadius: 15
     },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     list_row_name: {
-        fontSize: 30,
+        fontSize: 16,
         marginBottom: 10
     },
     list_row_id: {

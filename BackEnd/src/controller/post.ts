@@ -84,10 +84,12 @@ export const getPostByUser = async (req: Request , res: Response ) => {
  */
  export const createNewPost = async (req: Request | CtrlReq, res: Response | CtrlRes) => {
   console.log(req.body);
-  const sender = req.body._id;
+  const sender = req.body.sender;
+  const image = req.body.imageURL
   const post = new Post({
     message: req.body.message,
     sender: sender,
+    imageUrl:image
   });
 
   try {

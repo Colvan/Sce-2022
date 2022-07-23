@@ -20,8 +20,8 @@ const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
                 { post.imageUrl != "" &&  <Image source={{uri: post.imageUrl.toString()}} style={styles.list_row_image}></Image>}
                 { post.imageUrl == "" &&  <Image source={require("../assets/avatar.jpeg")} style={styles.list_row_image}></Image>}
                 <View style={styles.list_row_text_container}>
-                    <Text style={styles.list_row_name}>{post.message}</Text>
                     <Text style={styles.list_row_id}>{post.id}</Text>
+                    <Text style={styles.list_row_name}>{post.message}</Text>
                 </View>
             </View>
         </TouchableHighlight>

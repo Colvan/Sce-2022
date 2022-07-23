@@ -3,14 +3,13 @@ import { Post } from "./student_model"
 import FormData from 'form-data'
 
 const getAllPosts = async () => {
-    console.log("getAllStudents")
+    console.log("getAllPosts")
     const res = await apiClient.get("/post")
     let posts = Array<Post>()
     if (res.ok) {
         console.log("getAllStudents res.data " + res.data)
         if (res.data){
             res.data.forEach((item)=>{
-                console.log("getAllStudents item " + item.message)
                 const st:Post = {
                     id: item.sender,
                     message: item.message,

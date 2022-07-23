@@ -2,8 +2,6 @@ import React, { FC, useState,useRef, useEffect } from "react";
 import { View, Text, StyleSheet, Button, Image, TouchableHighlight } from 'react-native'
 
 
-
-import 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -46,13 +44,13 @@ const ToBarAddButton:FC<{onClick:()=>void}>=({onClick})=>{
 // }
 
 const App: FC = () => {
-    const [isSignedIn, setIsSignedIn] = useState(false);
+    const [isSignedIn, setIsSignedIn] = useState(true);
 
     return (
         <NavigationContainer>
 
             {isSignedIn ? (
-            <HomeStack.Navigator initialRouteName="AddPost">
+            <HomeStack.Navigator initialRouteName="Home">
                 <HomeStack.Screen name="Home" component={HomeScreen}
                                   options={{
                                       // headerRight: ()=><ToBarAddButton onClick={()=>openAddStudent()}></ToBarAddButton>

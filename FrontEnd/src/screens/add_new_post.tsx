@@ -5,7 +5,7 @@ import COLORS from "../constants/colors"
 import StudnetModel, { Post } from "../model/student_model"
 import ActivityIndicator from "./component/custom_activity_indicator"
 import CustomImagePicker from "./component/custom_image_picker"
-import {NavigationProps} from "../App";
+import {NavigationProps} from "../AppEntry";
 
 
 const AddPost: FC<NavigationProps> = ({ navigation, route }) => {

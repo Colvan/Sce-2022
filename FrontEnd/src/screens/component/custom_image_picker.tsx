@@ -52,7 +52,7 @@ const CustomImagePicker:FC<CustomImagePickerProps> = ({onImageSelected})=>{
     return (
         <View>
             { imageUri != "" && <Image style={styles.image_picker_image} source={{uri:imageUri}}></Image>}
-            { imageUri == "" && <Image style={styles.image_picker_image} source={require("../../assets/avatar.jpeg")}></Image>}
+            { imageUri == "" && <Image style={styles.image_picker_image} source={require("../../../assets/avatar.jpeg")}></Image>}
             
             <TouchableHighlight underlayColor={colors.clickBackground} onPress={openCamera} style={styles.image_picker_camera_btn}>
                 <Ionicons name={"camera"} size={50} color={colors.button_icon} />

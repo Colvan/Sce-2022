@@ -4,7 +4,7 @@ import { View, Text, Image, StyleSheet, FlatList, TouchableHighlight } from "rea
 import COLORS from "../constants/colors"
 import StudentModel,{Post} from "../model/student_model"
 import ActivityIndicator from "./component/custom_activity_indicator"
-import {NavigationProps} from "../App";
+import {NavigationProps} from "../AppEntry";
 
 type StudentListRowProps = {
     post: Post,
@@ -18,7 +18,7 @@ const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
             underlayColor={COLORS.clickBackground}>
             <View style={styles.list_row_container}>
                 { post.imageUrl != "" &&  <Image source={{uri: post.imageUrl.toString()}} style={styles.list_row_image}></Image>}
-                { post.imageUrl == "" &&  <Image source={require("../assets/avatar.jpeg")} style={styles.list_row_image}></Image>}
+                { post.imageUrl == "" &&  <Image source={require("../../assets/avatar.jpeg")} style={styles.list_row_image}></Image>}
                 <View style={styles.list_row_text_container}>
                     <Text style={styles.list_row_id}>{post.id}</Text>
                     <Text style={styles.list_row_name}>{post.message}</Text>

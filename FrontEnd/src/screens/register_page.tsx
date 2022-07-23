@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollVie
 import StudentModel, { User } from "../model/student_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
-import {NavigationProps} from "../App";
+import {NavigationProps} from "../AppEntry";
 
 
 const RegisterPage: FC<NavigationProps> = ({ navigation, route }) => {
@@ -51,7 +51,7 @@ const RegisterPage: FC<NavigationProps> = ({ navigation, route }) => {
             <Text>Register Via Google</Text>
             <TouchableHighlight
                 style={styles.google_icon}>
-                <Image  source={require('../assets/google.png')}></Image>
+                <Image  source={require('../../assets/google.png')}></Image>
             </TouchableHighlight>
           
         </View>

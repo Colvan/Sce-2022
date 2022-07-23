@@ -14,7 +14,7 @@ const ActivityIndicator: FC<ActivityIndicatorProps> = ({ visible }) => {
             <LottieView
                 autoPlay
                 loop
-                source={require("../../animations/paperplane.json")}
+                source={require("../../../animations/paperplane.json")}
                 ref={animation}
                 style={{
                     width: 400,

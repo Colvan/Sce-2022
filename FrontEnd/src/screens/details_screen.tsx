@@ -1,6 +1,6 @@
 import React,{FC, useState} from "react"
 import {View, Text} from "react-native"
-import {NavigationProps} from "../App";
+import {NavigationProps} from "../AppEntry";
 
 
 const Details: FC<NavigationProps> = ({ navigation, route }) => {

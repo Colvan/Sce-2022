@@ -1,6 +1,6 @@
 import React,{FC} from "react"
 import {View, Text} from "react-native"
-import {NavigationProps} from "../App";
+import {NavigationProps} from "../AppEntry";
 
 
 const About: FC<NavigationProps> = ({ navigation, route }) => {

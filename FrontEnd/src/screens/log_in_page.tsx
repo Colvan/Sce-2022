@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView
 import StudentModel, {User} from "../model/student_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
-import {NavigationProps} from "../App";
+import {NavigationProps} from "../AppEntry";
 
 
 const OpeningPage: FC<NavigationProps> = ({navigation, route}) => {

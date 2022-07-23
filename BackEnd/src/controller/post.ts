@@ -85,7 +85,7 @@ export const getPostByUser = async (req: Request , res: Response ) => {
  export const createNewPost = async (req: Request | CtrlReq, res: Response | CtrlRes) => {
   console.log(req.body);
   const sender = req.body.sender;
-  const image = req.body.imageURL
+  const image = req.body.imageUrl
   const post = new Post({
     message: req.body.message,
     sender: sender,
@@ -96,7 +96,7 @@ export const getPostByUser = async (req: Request , res: Response ) => {
     const newPost = await post.save();
     //send notification to all others users
     broadcastPostMessage({ sender: sender, message: req.body.message, _id: post._id})
-    res.status(200).send({ sender: sender, message: req.body.message, _id: post._id });
+    res.status(200).send({ sender: sender,message: req.body.message, _id: post._id,imageUrl: post.imageUrl });
   } catch (err) {
     res.status(400).send({
       err: err.message,

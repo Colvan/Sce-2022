@@ -17,11 +17,12 @@ GET http://localhost:3000/post/624d8f0b439e9fe03350229f
 
 POST http://localhost:3000/post
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTc5NTc3ODMsImV4cCI6MTY1Nzk1ODA4M30.GGpHperGHwYalB2YZE-W4J63_WE4wcbWBpLzVNPFWy8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTg1OTI2ODgsImV4cCI6MTY1ODU5Mjk4OH0.D3tqfYm9v-cnQGqi6msUBuZyrr5gR0DzIqq2_uzG4To
 
 {
-    "message" : "this is my first message",
-    "sender" : "t2t@t.com"
+    "message" : "second post",
+    "sender" : "t2t@t.com",
+    "imageUrl" :"https://images.unsplash.com/photo-1602271886918-bafecc837c7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80"
 }
 
 ###

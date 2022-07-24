@@ -19,7 +19,9 @@ const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
         var student: Post = {
             id: id,
             message: message,
-            imageUrl: imageUri
+            imageUrl: imageUri,
+            //neeed to get user id here
+            postId:""
         }
         if(imageUri != ""){
             console.log("saving image")

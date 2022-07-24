@@ -13,8 +13,8 @@ import {setIsLoggedIn} from "../store/authSlice";
 
 const OpeningPage: FC<NavigationProps> = ({navigation, route}) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [email, setEmail] = useState<String>("")
-    const [password, setPassword] = useState<String>("")
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
     const dispatch = useDispatch();
 
 

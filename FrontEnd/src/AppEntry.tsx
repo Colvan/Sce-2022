@@ -4,10 +4,8 @@ import {setIsLoggedIn} from "./store/authSlice";
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
-
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native';
-
 import HomeScreen from "./screens/home_screen";
 import DetailsScreen from "./screens/details_screen";
 import AddPostScreen from "./screens/add_new_post";
@@ -17,11 +15,14 @@ import registerScreen from "./screens/register_page";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./store";
 import Credentials from "./utils/credentials";
+import About from "./screens/about_screen";
 
 
 const Tab = createBottomTabNavigator();
 
 const HomeStack = createNativeStackNavigator();
+
+const UpperTab = createMaterialTopTabNavigator();
 
 export type NavigationProps = {
     navigation: any,
@@ -73,11 +74,11 @@ const AppEntry: FC= () => {
         <NavigationContainer>
 
             {isLoggedIn ? (
-                <HomeStack.Navigator initialRouteName="Home">
-                    <HomeStack.Screen name="Home" component={HomeScreen}/>
-                    <HomeStack.Screen name="Details" component={DetailsScreen}/>
-                    <HomeStack.Screen name="AddPost" component={AddPostScreen}/>
-                </HomeStack.Navigator>
+                <UpperTab.Navigator initialRouteName="Home">
+                    <UpperTab.Screen name="Home" component={HomeScreen}/>
+                    <UpperTab.Screen name="AddPost" component={AddPostScreen}/>
+                    <UpperTab.Screen name="MyDetails" component={About}/>
+                </UpperTab.Navigator>
             ) : (
                 <Tab.Navigator initialRouteName="About" screenOptions={({route}) => ({
                     tabBarIcon: ({focused, color, size}) => {

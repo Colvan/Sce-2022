@@ -16,6 +16,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./store";
 import Credentials from "./utils/credentials";
 import About from "./screens/about_screen";
+import Chat from "./screens/chat_screen";
 
 
 const Tab = createBottomTabNavigator();
@@ -76,8 +77,11 @@ const AppEntry: FC= () => {
             {isLoggedIn ? (
                 <UpperTab.Navigator initialRouteName="Home">
                     <UpperTab.Screen name="Home" component={HomeScreen}/>
-                    <UpperTab.Screen name="AddPost" component={AddPostScreen}/>
-                    <UpperTab.Screen name="MyDetails" component={About}/>
+                    <UpperTab.Screen name="Details" component={DetailsScreen}/>
+                    <UpperTab.Screen name="Add New Post" component={AddPostScreen}/>
+                    <UpperTab.Screen name="My Details" component={About}/>
+                    <UpperTab.Screen name="Public Chat" component={Chat}/>
+
                 </UpperTab.Navigator>
             ) : (
                 <Tab.Navigator initialRouteName="About" screenOptions={({route}) => ({

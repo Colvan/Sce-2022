@@ -28,16 +28,6 @@ const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
         </TouchableHighlight>
     )
 }
-const ToBarAddButton: FC<{ onClick: () => void }> = ({onClick}) => {
-    return (
-        <TouchableHighlight onPress={() => {
-            onClick()
-        }}
-                            underlayColor={COLORS.clickBackground}>
-            <Ionicons name={"add-outline"} size={40} color={'grey'}/>
-        </TouchableHighlight>
-    )
-}
 
 const Home: FC<NavigationProps> = ({ navigation, route }) => {
     const [data, setData] = useState<Array<Post>>()
@@ -47,9 +37,7 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
         console.log("on press " + postId)
         navigation.navigate('Details', {postId: postId})
     }
-    const openAddStudent = ()=>{   
-        navigation.navigate("AddPost")
-    }
+ 
 
 
     useEffect(()=>{
@@ -67,7 +55,6 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
 
     return (
         <View style={styles.home_container}>
-            <ToBarAddButton onClick={()=>{openAddStudent()}}></ToBarAddButton>
             <FlatList
                 data={data}
                 keyExtractor={item => item.postId.toString()}

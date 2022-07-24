@@ -148,6 +148,21 @@ router.get("/refresh", Auth.renewToken);
 
 /**
  * @swagger
+ * /auth/logout:
+ *  post:
+ *      summary: Log out the user
+ *      tags: [Auth]
+ *      security:
+ *          - bearerAuth: []
+ *      responses:
+ *          200:
+ *              description: You have been Logged Out
+ *          400:
+ *              description:
+ */
+ router.post("/logout", authenticate, Auth.logOut);
+/**
+ * @swagger
  * /auth/test:
  *   get:
  *     summary: test access token

@@ -89,14 +89,15 @@ export const getPostByUser = async (req: Request , res: Response ) => {
   const post = new Post({
     message: req.body.message,
     sender: sender,
-    imageUrl:image
+    imageUrl:image,
+    userId:req.body._id
   });
 
   try {
     const newPost = await post.save();
     //send notification to all others users
     broadcastPostMessage({ sender: sender, message: req.body.message, _id: post._id})
-    res.status(200).send({ sender: sender,message: req.body.message, _id: post._id,imageUrl: post.imageUrl });
+    res.status(200).send({ userId:req.body._id,sender: sender,message: req.body.message, _id: post._id,imageUrl: post.imageUrl });
   } catch (err) {
     res.status(400).send({
       err: err.message,

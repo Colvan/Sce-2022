@@ -102,6 +102,7 @@ const login = async (req: Request, res: Response) => {
             access_token: accessToken,
             refresh_token: refreshToken,
             _id: user._id,
+            email:email
         });
     } catch (err) {
         return res.status(StatusCodes.BAD_REQUEST).send({error: err.message});

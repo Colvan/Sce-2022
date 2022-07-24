@@ -31,11 +31,11 @@ const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
 
 const LogOutButton: FC<{ onClick: () => void }> = ({onClick}) => {
     return (
-        <TouchableHighlight onPress={() => {
+        <TouchableHighlight style = {styles.touchablebutton} onPress={() => {
             onClick()
         }}
                             underlayColor={COLORS.clickBackground}>
-            <Ionicons name={"log-out-outline"} size={40} color={'gray'}/>
+            <Ionicons name={"log-out-outline"} size={40}  color={'gray'}/>
         </TouchableHighlight>
     )
 }
@@ -70,7 +70,7 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
 
     return (
         <View style={styles.home_container}>
-            <LogOutButton onClick={()=>{}}></LogOutButton>
+            <LogOutButton onClick={()=>{}} ></LogOutButton>
             <FlatList
                 data={data}
                 keyExtractor={item => item.postId.toString()}
@@ -86,6 +86,9 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
 
 
 const styles = StyleSheet.create({
+    touchablebutton:{
+        paddingLeft:"90%"
+    },
     home_container: {
         flex: 1
     },

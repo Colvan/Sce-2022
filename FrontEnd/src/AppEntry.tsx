@@ -15,6 +15,7 @@ import COLORS from "./constants/colors"
 import registerScreen from "./screens/register_page";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./store";
+import Credentials from "./utils/credentials";
 
 
 const Tab = createBottomTabNavigator();
@@ -50,7 +51,15 @@ const AppEntry: FC = () => {
     const {isLoggedIn} = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setIsLoggedIn(true));
+        const checkAuthentication = async () => {
+            try {
+                const {access_token, refresh_token} = await Credentials.getCredentials()
+                dispatch(setIsLoggedIn(true));
+            } catch (e) {
+                console.log('restoring token failed');
+            }
+        }
+        checkAuthentication();
     }, []);
 
     return (

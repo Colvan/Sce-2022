@@ -24,7 +24,7 @@ const getAllPosts = async () => {
     return posts
 }
 
-const adddNewPost = async (st: Post) => {
+const addNewPost = async (st: Post) => {
     const res = await apiClient.post("/post", {
         sender: st.id,
         message: st.message,
@@ -52,37 +52,12 @@ const uploadImage = async (imageUri:String)=> {
 }
 
 
-const logIn = async (email:String,password:String) => {
-    const res = await apiClient.post("/auth/login", {
-        email: email,
-        password: password
-    })
-    if (res.ok) {
-        console.log("user loged in");
-        return res.data;
-    } else {
-        console.log("login failed")
-    }
-} 
-const register = async (email:String,password:String) => {
-    const res = await apiClient.post("/auth/register", {
-        email: email,
-        password: password
-    })
-    if (res.ok) {
-        console.log("user registered ");
-        return res.data;
-    } else {
-        console.log("register failed");
-    }
-} 
+
 
 
 
 export default {
     getAllPosts,
-    adddNewPost,
+    addNewPost,
     uploadImage,
-    logIn,
-    register
 }

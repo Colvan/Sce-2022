@@ -1,33 +1,43 @@
 import React, {FC, useState} from "react"
 import {View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView, TouchableOpacity} from "react-native"
-import StudentModel, {User} from "../model/student_model"
+import AuthModel, {User} from "../model/auth_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
 import {NavigationProps} from "../AppEntry";
+import Credentials from "../utils/credentials";
+import {useDispatch} from "react-redux";
+import {setIsLoggedIn} from "../store/authSlice";
+
+
 
 
 const OpeningPage: FC<NavigationProps> = ({navigation, route}) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [email, setEmail] = useState<String>("")
     const [password, setPassword] = useState<String>("")
+    const dispatch = useDispatch();
 
 
     const onSubmit = async () => {
-        navigation.navigate("Home");
-        // setIsLoading(true)
-        // var user: User = {
-        //     email: email,
-        //     password: password
-        //
-        // }
-        // var logedin = await StudentModel.logIn(user.email, user.password);
-        // if (logedin) {
-        //     setIsLoading(false)
-        //     return logedin
-        // } else {
-        //     setIsLoading(false)
-        //     alert("No Such User")
-        // }
+
+        setIsLoading(true)
+        let user: User = {
+            email: email,
+            password: password
+
+        }
+        let result = await AuthModel.logIn(user.email, user.password);
+        if (result) {
+            setIsLoading(false);
+            await Credentials.setCredentials(result);
+            dispatch(setIsLoggedIn(true));
+
+
+
+        } else {
+            setIsLoading(false)
+            alert("No Such User")
+        }
     }
     return (
 
@@ -40,6 +50,7 @@ const OpeningPage: FC<NavigationProps> = ({navigation, route}) => {
                 <TextInput style={styles.textInput}
                            onChangeText={setPassword}
                            placeholder="password"
+                           secureTextEntry={true}
                            keyboardType="default"></TextInput>
                 <TouchableHighlight
                     onPress={onSubmit}

@@ -5,18 +5,14 @@ export type Post = {
     message:String,
     imageUrl: String
 }
-export type User = {
-    email:String,
-    password:String
-}
 
 const getAllPosts = async ()=>{
     const posts = await StudentApi.getAllPosts()
     return posts
 } 
 
-const adddNewPost = async (st:Post)=>{
-    await StudentApi.adddNewPost(st)
+const addNewPost = async (st:Post)=>{
+    await StudentApi.addNewPost(st)
 } 
 
 const uploadImage = async (imageUri:String)=> {
@@ -24,20 +20,10 @@ const uploadImage = async (imageUri:String)=> {
     return url
 }
 
-const logIn = async (email:String,password:String)=> {
-    const login = await StudentApi.logIn(email,password)
-    return login;
-}
-const register = async (email:String,password:String)=> {
-    const register = await StudentApi.register(email,password);
-     return register;
-    
-}
+
 
 export default {
-    adddNewPost,
+    addNewPost,
     getAllPosts,
     uploadImage,
-    logIn,
-    register
 }

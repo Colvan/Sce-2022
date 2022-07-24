@@ -29,6 +29,17 @@ const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
     )
 }
 
+const LogOutButton: FC<{ onClick: () => void }> = ({onClick}) => {
+    return (
+        <TouchableHighlight onPress={() => {
+            onClick()
+        }}
+                            underlayColor={COLORS.clickBackground}>
+            <Ionicons name={"log-out-outline"} size={40} color={'gray'}/>
+        </TouchableHighlight>
+    )
+}
+
 const Home: FC<NavigationProps> = ({ navigation, route }) => {
     const [data, setData] = useState<Array<Post>>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -53,8 +64,13 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
         setIsLoading(false)
     }
 
+    const logOut = () => {
+        
+    }
+
     return (
         <View style={styles.home_container}>
+            <LogOutButton onClick={()=>{}}></LogOutButton>
             <FlatList
                 data={data}
                 keyExtractor={item => item.postId.toString()}

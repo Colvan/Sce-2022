@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 import HomeScreen from "./screens/home_screen";
 import DetailsScreen from "./screens/details_screen";
@@ -47,7 +48,7 @@ const ToBarAddButton: FC<{ onClick: () => void }> = ({onClick}) => {
 //     );
 // }
 
-const AppEntry: FC = () => {
+const AppEntry: FC= () => {
     const {isLoggedIn} = useSelector((state: RootState) => state.auth);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -62,16 +63,18 @@ const AppEntry: FC = () => {
         checkAuthentication();
     }, []);
 
+
+
+
+
+
     return (
 
         <NavigationContainer>
 
             {isLoggedIn ? (
                 <HomeStack.Navigator initialRouteName="Home">
-                    <HomeStack.Screen name="Home" component={HomeScreen}
-                                      options={{
-                                          // headerRight: ()=><ToBarAddButton onClick={()=>openAddStudent()}></ToBarAddButton>
-                                      }}/>
+                    <HomeStack.Screen name="Home" component={HomeScreen}/>
                     <HomeStack.Screen name="Details" component={DetailsScreen}/>
                     <HomeStack.Screen name="AddPost" component={AddPostScreen}/>
                 </HomeStack.Navigator>

@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from "react"
 import { View, Text, Image, StyleSheet, FlatList, TouchableHighlight } from "react-native"
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import COLORS from "../constants/colors"
 import StudentModel,{Post} from "../model/student_model"
@@ -27,7 +28,16 @@ const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
         </TouchableHighlight>
     )
 }
-
+const ToBarAddButton: FC<{ onClick: () => void }> = ({onClick}) => {
+    return (
+        <TouchableHighlight onPress={() => {
+            onClick()
+        }}
+                            underlayColor={COLORS.clickBackground}>
+            <Ionicons name={"add-outline"} size={40} color={'grey'}/>
+        </TouchableHighlight>
+    )
+}
 
 const Home: FC<NavigationProps> = ({ navigation, route }) => {
     const [data, setData] = useState<Array<Post>>()
@@ -37,6 +47,10 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
         console.log("on press " + postId)
         navigation.navigate('Details', {postId: postId})
     }
+    const openAddStudent = ()=>{   
+        navigation.navigate("AddPost")
+    }
+
 
     useEffect(()=>{
         navigation.addListener('focus',()=>{
@@ -53,6 +67,7 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
 
     return (
         <View style={styles.home_container}>
+            <ToBarAddButton onClick={()=>{openAddStudent()}}></ToBarAddButton>
             <FlatList
                 data={data}
                 keyExtractor={item => item.postId.toString()}

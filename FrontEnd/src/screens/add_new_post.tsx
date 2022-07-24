@@ -27,7 +27,7 @@ const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
             student.imageUrl = url
             console.log("saving image finish url : " + url) 
         }
-        await StudnetModel.adddNewPost(student)
+        await StudnetModel.addNewPost(student)
         navigation.goBack()
     }
 

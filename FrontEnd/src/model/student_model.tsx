@@ -3,7 +3,8 @@ import StudentApi from "./student_api"
 export type Post = {
     id: String,
     message:String,
-    imageUrl: String
+    imageUrl: String,
+    postId:String
 }
 
 const getAllPosts = async ()=>{

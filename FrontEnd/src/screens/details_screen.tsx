@@ -4,15 +4,15 @@ import {NavigationProps} from "../AppEntry";
 
 
 const Details: FC<NavigationProps> = ({ navigation, route }) => {
-    const [id, setId] = useState<String>("")
+    const [postId, setId] = useState<String>("")
     React.useEffect(()=>{
-        if (route.params?.id){
-            setId(route.params.id)
+        if (route.params?.postId){
+            setId(route.params.postId)
         }
     })
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Details: {id}</Text>
+            <Text>Details: {postId}</Text>
         </View>
     )
 }

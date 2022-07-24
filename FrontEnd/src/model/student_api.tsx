@@ -13,7 +13,8 @@ const getAllPosts = async () => {
                 const st:Post = {
                     id: item.sender,
                     message: item.message,
-                    imageUrl: item.imageUrl
+                    imageUrl: item.imageUrl,
+                    postId:item._id
                 }
                 posts.push(st)
             })

@@ -20,7 +20,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRkOWZiMmM1M2JhN2NlYmFmMWRjMzYiLCJpYXQiOjE2NTg2NTE5MTksImV4cCI6MTY1ODY1MjIxOX0.Psv2ZJzoCLpgI0yhEPeJhjqcgLn2-cNP0XERvm9AYsE
 
 {
-    "message" : "test post",
+    "message" : "tttt post",
     "sender" : "t2t@t.com",
     "imageUrl" :"https://images.unsplash.com/photo-1602271886918-bafecc837c7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80"
 }

@@ -79,10 +79,8 @@ const MyPosts: FC<NavigationProps> = ({ navigation, route }) => {
 }
 
 
-const MyPostsNavigatorComponent: FC<StudentListRowProps> = ({ post, onItemClick }) => {
+const MyPostsNavigatorComponent: FC<StudentListRowProps> = () => {
     return (
-        
-
             <HomeStack.Navigator initialRouteName="MyPosts">
             <HomeStack.Screen name="MyPosts" component={MyPosts}/>
             <HomeStack.Screen name="Details" component={DetailsScreen}/>

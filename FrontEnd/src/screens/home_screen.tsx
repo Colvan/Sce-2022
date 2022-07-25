@@ -8,14 +8,12 @@ import ActivityIndicator from "./component/custom_activity_indicator"
 import {NavigationProps} from "../AppEntry";
 
 type StudentListRowProps = {
-    post: Post,
-    onItemClick: (postId: String) => void
+    post: Post
 }
 
-const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
+const StudentListRow: FC<StudentListRowProps> = ({ post }) => {
     return (
         <TouchableHighlight
-            onPress={()=>{onItemClick(post.postId)}}
             underlayColor={COLORS.clickBackground}>
             <View style={styles.list_row_container}>
                 { post.imageUrl != "" &&  <Image source={{uri: post.imageUrl.toString()}} style={styles.list_row_image}></Image>}
@@ -44,10 +42,6 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
     const [data, setData] = useState<Array<Post>>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const openDetails = (postId:String)=>{
-        console.log("on press " + postId)
-        navigation.navigate('Details', {postId: postId})
-    }
  
 
 
@@ -74,8 +68,7 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
             <FlatList
                 data={data}
                 keyExtractor={item => item.postId.toString()}
-                renderItem={({ item }) => (<StudentListRow post={item}
-                            onItemClick={openDetails} />)}
+                renderItem={({ item }) => (<StudentListRow post={item}/>)}
             ></FlatList>
             <View style={styles.activity_indicator}>
                 <ActivityIndicator visible={isLoading}></ActivityIndicator>

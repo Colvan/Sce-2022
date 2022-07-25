@@ -7,13 +7,12 @@ import ActivityIndicator from "./component/custom_activity_indicator"
 import {NavigationProps} from "../AppEntry";
 import DetailsScreen from "./details_screen";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {NavigationContainer} from "@react-navigation/native";
 
 
 
 type StudentListRowProps = {
     post: Post,
-    onItemClick: (postId: String) => void
+    onItemClick: (postId:String , id:String,message:String,imageURL:String) => void
 }
 
 const HomeStack = createNativeStackNavigator();
@@ -22,7 +21,7 @@ const HomeStack = createNativeStackNavigator();
 const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
     return (
         <TouchableHighlight
-            onPress={()=>{onItemClick(post.postId)}}
+            onPress={()=>{onItemClick(post.postId,post.id,post.message,post.imageUrl)}}
             underlayColor={COLORS.clickBackground}>
             <View style={styles.list_row_container}>
                 { post.imageUrl != "" &&  <Image source={{uri: post.imageUrl.toString()}} style={styles.list_row_image}></Image>}
@@ -40,9 +39,9 @@ const MyPosts: FC<NavigationProps> = ({ navigation, route }) => {
     const [data, setData] = useState<Array<Post>>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const openDetails = (postId:String)=>{
-        console.log("on press " + postId)
-        navigation.navigate('Details', {postId: postId})
+    const openDetails = (postId:String , id:String,message:String,imageURL:String)=>{
+        console.log("on press " + postId + id + message + imageURL)
+        navigation.navigate('Details', {postId: postId,id:id,message:message,imageURL:imageURL})
     }
  
 

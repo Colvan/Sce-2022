@@ -26,10 +26,15 @@ const getPostsByUser = async (mail:String)=> {
     return posts
 }
 
+const deletePost = async (id:String)=>{
+    await StudentApi.deletePost(id)
+} 
+
 
 export default {
     addNewPost,
     getAllPosts,
     uploadImage,
-    getPostsByUser
+    getPostsByUser,
+    deletePost
 }

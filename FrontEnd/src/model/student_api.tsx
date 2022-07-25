@@ -41,7 +41,7 @@ const addNewPost = async (st: Post) => {
 const uploadImage = async (imageUri:String)=> {
     console.log("uploadImage")
     const formData = new FormData()
-    formData.append('file',{name: 'name', type:'iamge/jpeg', uri: imageUri})
+    formData.append('file',{name: 'name', type:'image/jpeg', uri: imageUri})
     let url = '/file/file'
     const res = await apiClient.post(url,formData)
     if (res.ok){
@@ -75,12 +75,20 @@ const getPostsByUser = async (mail: String) => {
     return posts
 } 
 
-
+const deletePost = async (id: String) => {
+    const res = await apiClient.delete("/post/"+id)
+    if (res.ok) {
+        console.log(id +"post deleted ")
+    } else {
+        console.log("delete post fail")
+    }
+} 
 
 
 export default {
     getAllPosts,
     addNewPost,
     uploadImage,
-    getPostsByUser
+    getPostsByUser,
+    deletePost
 }

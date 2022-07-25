@@ -52,7 +52,28 @@ const uploadImage = async (imageUri:String)=> {
     }
 }
 
-
+const getPostsByUser = async (mail: String) => {
+    console.log("getAllPosts")
+    const res = await apiClient.get("/post/user/"+mail)
+    let posts = Array<Post>()
+    if (res.ok) {
+        console.log("getPostsByUser res.data " + res.data)
+        if (res.data){
+            res.data.forEach((item)=>{
+                const st:Post = {
+                    id: item.sender,
+                    message: item.message,
+                    imageUrl: item.imageUrl,
+                    postId:item._id
+                }
+                posts.push(st)
+            })
+        }
+    } else {
+        console.log("getPostsByUser fail")
+    }
+    return posts
+} 
 
 
 
@@ -61,4 +82,5 @@ export default {
     getAllPosts,
     addNewPost,
     uploadImage,
+    getPostsByUser
 }

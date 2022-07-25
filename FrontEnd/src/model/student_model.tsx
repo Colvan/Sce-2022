@@ -21,10 +21,15 @@ const uploadImage = async (imageUri:String)=> {
     return url
 }
 
+const getPostsByUser = async (mail:String)=> {
+    const posts = await StudentApi.getPostsByUser(mail)
+    return posts
+}
 
 
 export default {
     addNewPost,
     getAllPosts,
     uploadImage,
+    getPostsByUser
 }

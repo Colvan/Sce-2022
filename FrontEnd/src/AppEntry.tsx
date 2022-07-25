@@ -17,6 +17,7 @@ import {RootState} from "./store";
 import Credentials from "./utils/credentials";
 import About from "./screens/about_screen";
 import Chat from "./screens/chat_screen";
+import MyPostsScreen from "./screens/my_posts_screen";
 
 
 const Tab = createBottomTabNavigator();
@@ -77,7 +78,7 @@ const AppEntry: FC= () => {
             {isLoggedIn ? (
                 <UpperTab.Navigator initialRouteName="Home">
                     <UpperTab.Screen name="Home" component={HomeScreen}/>
-                    <UpperTab.Screen name="Details" component={DetailsScreen}/>
+                    <UpperTab.Screen name="My Posts" component={MyPostsScreen}/>
                     <UpperTab.Screen name="Add New Post" component={AddPostScreen}/>
                     <UpperTab.Screen name="My Details" component={About}/>
                     <UpperTab.Screen name="Public Chat" component={Chat}/>

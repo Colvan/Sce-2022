@@ -80,6 +80,8 @@ const deletePost = async (id: String) => {
     if (res.ok) {
         console.log(id +"post deleted ")
     } else {
+        console.log(res.data);
+        
         console.log("delete post fail")
     }
 } 

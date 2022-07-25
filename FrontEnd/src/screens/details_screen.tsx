@@ -29,6 +29,7 @@ const Details: FC<NavigationProps> = ({ navigation, route }) => {
 
     const onSave = async () => {
         setIsLoading(true)
+        //check if needed Post
         var post: Post = {
             id: sender,
             message: message,
@@ -41,7 +42,7 @@ const Details: FC<NavigationProps> = ({ navigation, route }) => {
             post.imageUrl = url
             console.log("saving image finish url : " + url) 
         }
-        await StudnetModel.addNewPost(post)
+        await StudnetModel.updatePost(postId,message)
         navigation.goBack()
     }
 
@@ -75,7 +76,7 @@ const Details: FC<NavigationProps> = ({ navigation, route }) => {
                 onPress={onSave}
                 underlayColor={COLORS.clickBackground}
                 style={styles.button}>
-                <Text style={styles.button_text}>Save</Text>
+                <Text style={styles.button_text}>Update</Text>
             </TouchableHighlight>
             <TouchableHighlight
                 onPress={onDelete}

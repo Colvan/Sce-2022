@@ -30,11 +30,16 @@ const deletePost = async (id:String)=>{
     await StudentApi.deletePost(id)
 } 
 
+const updatePost = async (id:String,message:String)=>{
+    await StudentApi.updatePost(id,message)
+} 
+
 
 export default {
     addNewPost,
     getAllPosts,
     uploadImage,
     getPostsByUser,
-    deletePost
+    deletePost,
+    updatePost
 }

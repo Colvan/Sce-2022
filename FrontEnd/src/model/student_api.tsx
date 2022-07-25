@@ -87,10 +87,22 @@ const deletePost = async (id: String) => {
 } 
 
 
+const updatePost = async (id: String,message:String) => {
+    const res = await apiClient.post("/post/"+id,{message:message})
+    if (res.ok) {
+        console.log(id +"update post ")
+    } else {
+        console.log(res.data);
+        
+        console.log("update post fail")
+    }
+} 
+
 export default {
     getAllPosts,
     addNewPost,
     uploadImage,
     getPostsByUser,
-    deletePost
+    deletePost,
+    updatePost
 }

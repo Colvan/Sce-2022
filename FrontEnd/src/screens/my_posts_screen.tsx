@@ -40,7 +40,6 @@ const MyPosts: FC<NavigationProps> = ({ navigation, route }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const openDetails = (postId:String , id:String,message:String,imageURL:String)=>{
-        console.log("on press " + postId + id + message + imageURL)
         navigation.navigate('Details', {postId: postId,id:id,message:message,imageURL:imageURL})
     }
  

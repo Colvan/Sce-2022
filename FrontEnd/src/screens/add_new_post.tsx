@@ -9,19 +9,25 @@ import {NavigationProps} from "../AppEntry";
 
 
 const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
-    const [id, setId] = useState<String>("")
-    const [message, setName] = useState<String>("")
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [imageUri,setImageUri] = useState<String>("")
+    var [sender,setId] = useState<String>("")
+    var [message, setMessage] = useState<String>("")
+    var [isLoading, setIsLoading] = useState<boolean>(false)
+    var [imageUri,setImageUri] = useState<String>("")
+    var [userID,setUserId] = useState<String>("")
+    var [token,setUserToken] = useState<String>("")
 
+    
     const onSave = async () => {
+        sender ="ivan@test.com"
+        userID = "62e017c74a1c86866135664e"
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUwMTdjNzRhMWM4Njg2NjEzNTY2NGUiLCJpYXQiOjE2NTg4NTM5MjEsImV4cCI6MTY1ODg1NDIyMX0.aOd0kka35w9uxAlFWV85aSfz5gqWyZ6deV8qEvx1MyU"
         setIsLoading(true)
         var student: Post = {
-            id: id,
+            id: sender,
             message: message,
             imageUrl: imageUri,
             //neeed to get user id here
-            postId:""
+            postId:userID
         }
         if(imageUri != ""){
             console.log("saving image")
@@ -29,7 +35,8 @@ const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
             student.imageUrl = url
             console.log("saving image finish url : " + url) 
         }
-        await StudnetModel.addNewPost(student)
+        await StudnetModel.addNewPost(student,token)
+        setIsLoading(false)
         navigation.goBack()
     }
 
@@ -44,13 +51,10 @@ const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
                 <View style={styles.image} >
                     <CustomImagePicker onImageSelected={onImageSelected}></CustomImagePicker>
                 </View>
+                <Text style={{ height: 40,margin: 12, padding: 10, borderColor: 'grey'}}> Email : {sender}</Text>
+
                 <TextInput style={styles.textInput}
-                //need to replace id with current logedin users id
-                    onChangeText={setId}
-                    placeholder="ID"
-                    keyboardType="default"></TextInput>
-                <TextInput style={styles.textInput}
-                    onChangeText={setName}
+                    onChangeText={setMessage}
                     placeholder="Message"
                     keyboardType="default"></TextInput>
                 <TouchableHighlight

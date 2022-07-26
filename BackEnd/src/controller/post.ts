@@ -9,7 +9,6 @@ import { CtrlReq, CtrlRes } from "../common/req_res_wrapper"
  *  * @param {http response} res
  *  */
  export const getAllPosts = async (req: Request, res: Response) => {
-  console.log("getAllPosts");
 
   try {
     const sender = req.query.sender;
@@ -33,7 +32,6 @@ import { CtrlReq, CtrlRes } from "../common/req_res_wrapper"
  * @param {http response} res
  */
  export const getPostById = async (req: Request, res: Response) => {
-  console.log("getPostById id=" + req.params.id);
   const id = req.params.id;
   if (id == null) {
     return res.status(400).send({ err: "no id provided" });
@@ -112,7 +110,6 @@ export const getPostByUser = async (req: Request , res: Response ) => {
  * @param res
  */
  export const deletePostById = async (req: Request, res: Response) => {
-  console.log("deletePostById id=" + req.params.id);
   const id = req.params.id;
   if (id == null) {
     return res.status(400).send({ err: "no id provided" });

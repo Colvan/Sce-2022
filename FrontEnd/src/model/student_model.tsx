@@ -12,8 +12,8 @@ const getAllPosts = async ()=>{
     return posts
 } 
 
-const addNewPost = async (st:Post)=>{
-    await StudentApi.addNewPost(st)
+const addNewPost = async (st:Post,token:String)=>{
+    await StudentApi.addNewPost(st,token)
 } 
 
 const uploadImage = async (imageUri:String)=> {
@@ -26,8 +26,8 @@ const getPostsByUser = async (mail:String)=> {
     return posts
 }
 
-const deletePost = async (id:String)=>{
-    await StudentApi.deletePost(id)
+const deletePost = async (id:String,token:String)=>{
+    await StudentApi.deletePost(id,token)
 } 
 
 const updatePost = async (id:String,message:String)=>{

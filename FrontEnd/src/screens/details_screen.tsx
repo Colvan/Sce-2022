@@ -55,7 +55,7 @@ const Details: FC<NavigationProps> = ({ navigation, route }) => {
         //     post.imageUrl = url
         //     console.log("saving image finish url : " + url) 
         // }
-        await StudnetModel.deletePost(postId)
+        await StudnetModel.deletePost(postId,"token passed here")
         navigation.goBack()
     }
 

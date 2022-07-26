@@ -102,7 +102,7 @@ const login = async (req: Request, res: Response) => {
             access_token: accessToken,
             refresh_token: refreshToken,
             _id: user._id,
-            email:email
+            email: email
         });
     } catch (err) {
         return res.status(StatusCodes.BAD_REQUEST).send({error: err.message});
@@ -142,7 +142,7 @@ const renewToken = async (req: Request, res: Response) => {
             res.status(StatusCodes.OK).send({
                 access_token: accessToken,
                 refresh_token: refreshToken,
-                _id: userId,
+                _id: user._id,
             });
         } catch (err) {
             return res.status(StatusCodes.FORBIDDEN).send({error: err.message});
@@ -165,13 +165,15 @@ const test = async (req: Request, res: Response) => {
  * @param {http res} res
  */
 const logOut = async (req: Request, res: Response) => {
-    const token = req.headers["authorization"];
+    let token = req.headers["authorization"];
+    token = token.split(" ")[1];
+    console.log(token)
     try {
-        jwt.sign(token, "", {expiresIn: process.env.TOKEN_EXPIRATION_AFTER_LOGOUT}, async (err, logout) => {
+        jwt.sign(token, process.env.ACCESS_TOKEN_SECRET, {expiresIn: process.env.TOKEN_EXPIRATION_AFTER_LOGOUT}, async (err, logout) => {
             if (logout) {
-                res.send({msg: 'You have been Logged Out'});
+                res.status(StatusCodes.OK).send('You have been Logged Out');
             } else {
-                res.send({msg: err});
+                res.status(StatusCodes.FORBIDDEN).send(err.message);
             }
         })
         return res.sendStatus(StatusCodes.OK);

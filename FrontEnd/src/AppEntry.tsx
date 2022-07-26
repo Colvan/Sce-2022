@@ -1,6 +1,5 @@
 import React, {FC, useState, useRef, useEffect} from "react";
 import {View, Text, StyleSheet, Button, Image, TouchableHighlight} from 'react-native'
-import {setIsLoggedIn} from "./store/authSlice";
 import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
@@ -12,12 +11,15 @@ import AddPostScreen from "./screens/add_new_post";
 import logInScreen from "./screens/log_in_page";
 import COLORS from "./constants/colors"
 import registerScreen from "./screens/register_page";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "./store";
+
 import Credentials from "./utils/credentials";
 import About from "./screens/about_screen";
 import Chat from "./screens/chat_screen";
 import MyPostsScreen from "./screens/my_posts_screen";
+import {useAppDispatch, useAppSelector} from "./store/storeHooks";
+import {AuthActions} from "./store/authSlice";
+import store from "./store/store";
+
 
 
 const Tab = createBottomTabNavigator();
@@ -42,40 +44,33 @@ const ToBarAddButton: FC<{ onClick: () => void }> = ({onClick}) => {
     )
 }
 
-// const HomeStackScreen: FC<NavigationProps> = ({ navigation, route }) => {
-//     const openAddStudent = ()=>{
-//         navigation.navigate("AddStudent")
-//     }
-//     return (
-//
-//     );
-// }
-
 const AppEntry: FC= () => {
-    const {isLoggedIn} = useSelector((state: RootState) => state.auth);
-    const dispatch = useDispatch();
+
+    const authSlice = useAppSelector(state => state.auth);
+    const dispatch = useAppDispatch();
     useEffect(() => {
         const checkAuthentication = async () => {
             try {
-                const {access_token, refresh_token} = await Credentials.getCredentials()
-                dispatch(setIsLoggedIn(true));
+                const userToken = await Credentials.getVerifiedTokens()
+                if(userToken) {
+                    dispatch(AuthActions.setUserToken(userToken));
+                    dispatch(AuthActions.setIsLoggedIn(true));
+                } else {
+                    console.log("Need to log in");
+                }
             } catch (e) {
-                console.log('restoring token failed');
+                console.log('restoring token failed: ' + e);
             }
         }
         checkAuthentication();
     }, []);
 
 
-
-
-
-
     return (
 
         <NavigationContainer>
 
-            {isLoggedIn ? (
+            {authSlice.isLoggedIn ? (
                 <UpperTab.Navigator initialRouteName="Home">
                     <UpperTab.Screen name="Home" component={HomeScreen}/>
                     <UpperTab.Screen name="My Posts" component={MyPostsScreen}/>
@@ -100,8 +95,6 @@ const AppEntry: FC= () => {
                 })}>
                     <Tab.Screen name="Log In Page" component={logInScreen}></Tab.Screen>
                     <Tab.Screen name="Register" component={registerScreen}></Tab.Screen>
-                    {/*<Tab.Screen name="HomeStack" component={HomeStackScreen} options={{ headerShown: false }}></Tab.Screen>*/}
-                    {/*<Tab.Screen name="About" component={AboutScreen}></Tab.Screen>*/}
                 </Tab.Navigator>
             )}
 

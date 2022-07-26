@@ -6,6 +6,13 @@ import COLORS from "../constants/colors"
 import StudentModel,{Post} from "../model/student_model"
 import ActivityIndicator from "./component/custom_activity_indicator"
 import {NavigationProps} from "../AppEntry";
+import {AuthActions} from "../store/authSlice";
+
+import Credentials from "../utils/credentials";
+import {useAppDispatch} from "../store/storeHooks";
+import store from "../store/store";
+
+
 
 type StudentListRowProps = {
     post: Post
@@ -41,8 +48,10 @@ const LogOutButton: FC<{ onClick: () => void }> = ({onClick}) => {
 const Home: FC<NavigationProps> = ({ navigation, route }) => {
     const [data, setData] = useState<Array<Post>>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const dispatch = useAppDispatch();
 
- 
+
+
 
 
     useEffect(()=>{
@@ -58,13 +67,15 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
         setIsLoading(false)
     }
 
-    const logOut = () => {
-        
+    const logOut = async () => {
+        // const userToken = store.getState().auth.userToken
+        await Credentials.setCredentials(null);
+        dispatch(AuthActions.logOut());
     }
 
     return (
         <View style={styles.home_container}>
-            <LogOutButton onClick={()=>{}} ></LogOutButton>
+            <LogOutButton onClick={logOut} ></LogOutButton>
             <FlatList
                 data={data}
                 keyExtractor={item => item.postId.toString()}

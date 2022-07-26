@@ -116,7 +116,7 @@ router.post("/login", Auth.login);
 /**
  * @swagger
  * /auth/refresh:
- *   get:
+ *   post:
  *     summary: refresh access token using the refresh token
  *     tags: [Auth]
  * 
@@ -143,7 +143,7 @@ router.post("/login", Auth.login);
  *               _id: "adfasdfasdfasdfsd"
  *
  */
-router.get("/refresh", Auth.renewToken);
+router.post("/refresh", Auth.renewToken);
 
 
 /**

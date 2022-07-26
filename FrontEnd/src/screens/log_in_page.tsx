@@ -1,12 +1,13 @@
 import React, {FC, useState} from "react"
-import {View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView, TouchableOpacity} from "react-native"
+import {View, Text, StyleSheet, TextInput, TouchableHighlight, ScrollView} from "react-native"
 import AuthModel, {User} from "../model/auth_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
 import {NavigationProps} from "../AppEntry";
 import Credentials from "../utils/credentials";
-import {useDispatch} from "react-redux";
-import {setIsLoggedIn} from "../store/authSlice";
+import {AuthActions} from "../store/authSlice";
+import {useAppDispatch} from "../store/storeHooks";
+
 
 
 
@@ -15,7 +16,8 @@ const OpeningPage: FC<NavigationProps> = ({navigation, route}) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
+
 
 
     const onSubmit = async () => {
@@ -28,9 +30,13 @@ const OpeningPage: FC<NavigationProps> = ({navigation, route}) => {
         }
         let result = await AuthModel.logIn(user.email, user.password);
         if (result) {
+
+            console.log(`i just logged in`);
+            console.log(result);
             setIsLoading(false);
             await Credentials.setCredentials(result);
-            dispatch(setIsLoggedIn(true));
+            dispatch(AuthActions.setUserToken(result));
+            dispatch(AuthActions.setIsLoggedIn(true));
 
 
 

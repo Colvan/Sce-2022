@@ -22,6 +22,7 @@ const Details: FC<NavigationProps> = ({ navigation, route }) => {
             setName(route.params.message)
             setImageUri(route.params.imageURL)
             setpostId(route.params.postId)
+            
         }
     },[])
     
@@ -34,7 +35,6 @@ const Details: FC<NavigationProps> = ({ navigation, route }) => {
         console.log(postId);
         
         setIsLoading(true)
-        //check if needed Post
         var post: Post = {
             id: sender,
             message: message,

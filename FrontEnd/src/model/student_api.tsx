@@ -25,7 +25,7 @@ const getAllPosts = async () => {
 
 const addNewPost = async (st: Post, token: String) => {
   console.log(st);
-  
+
   const res = await apiClient.post(
     "/post",
     {
@@ -61,7 +61,7 @@ const getPostsByUser = async (mail: String) => {
   const res = await apiClient.get("/post/user/" + mail);
   let posts = Array<Post>();
   if (res.ok) {
-    if (res.data) {
+    if (res.data != "No posts by user found") {
       res.data.forEach((item) => {
         const st: Post = {
           id: item.sender,
@@ -97,8 +97,17 @@ const deletePost = async (id: String, token: String) => {
   }
 };
 
-const updatePost = async (id: String, message: String) => {
-  const res = await apiClient.post("/post/" + id, { message: message });
+const updatePost = async (
+  id: String,
+  message: String,
+  imgURL: String,
+  token: String
+) => {
+  const res = await apiClient.post(
+    "/post/updatepost/" + id,
+    { message: message, imageUrl: imgURL },
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
   if (res.ok) {
     console.log(id + "update post ");
   } else {

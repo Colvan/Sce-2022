@@ -5,9 +5,12 @@ import CustomImagePicker from "./component/custom_image_picker"
 import ActivityIndicator from "./component/custom_activity_indicator"
 import StudnetModel, { Post } from "../model/student_model"
 import COLORS from "../constants/colors"
+import store from "../store/store";
 
 
 const Details: FC<NavigationProps> = ({ navigation, route }) => {
+    const userToken = store.getState().auth.userToken
+
     const [postId, setpostId] = useState<String>("")
     const [sender, setId] = useState<String>("")
     const [message, setName] = useState<String>("")
@@ -28,6 +31,8 @@ const Details: FC<NavigationProps> = ({ navigation, route }) => {
     }
 
     const onSave = async () => {
+        console.log(postId);
+        
         setIsLoading(true)
         //check if needed Post
         var post: Post = {
@@ -42,7 +47,9 @@ const Details: FC<NavigationProps> = ({ navigation, route }) => {
             post.imageUrl = url
             console.log("saving image finish url : " + url) 
         }
-        await StudnetModel.updatePost(postId,message)
+        await StudnetModel.updatePost(postId,message,post.imageUrl,userToken!.access_token)
+        setIsLoading(false)
+
         navigation.goBack()
     }
 

@@ -7,6 +7,7 @@ import ActivityIndicator from "./component/custom_activity_indicator"
 import {NavigationProps} from "../AppEntry";
 import DetailsScreen from "./details_screen";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import store from "../store/store";
 
 
 
@@ -36,6 +37,8 @@ const StudentListRow: FC<StudentListRowProps> = ({ post, onItemClick }) => {
 }
 
 const MyPosts: FC<NavigationProps> = ({ navigation, route }) => {
+    const userToken = store.getState().auth.userToken
+
     const [data, setData] = useState<Array<Post>>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -54,7 +57,7 @@ const MyPosts: FC<NavigationProps> = ({ navigation, route }) => {
     const reloadData = async ()=>{
         setIsLoading(true)
         //here will be dynamic array of users posts
-        const studentData = await StudentModel.getPostsByUser("t2t@t.com")
+        const studentData = await StudentModel.getPostsByUser(userToken!.email)
         setData(studentData)
         setIsLoading(false)
     }

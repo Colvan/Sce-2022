@@ -137,12 +137,14 @@ export const getPostByUser = async (req: Request , res: Response ) => {
     console.log("updateUsersPost id=" + req.params.id);
    const id = req.params.id;
    const msg = req.body.message;
+   const imageURL = req.body.imageUrl;
    if (id == null) {
      return res.status(400).send({ err: "no id provided" });
    }
    
    try {
-     Post.findOneAndUpdate({sender:id}, {$set:{message:msg}}).then(function(response){
+     Post.findByIdAndUpdate({_id:id}, {message:msg , imageUrl:imageURL}).then(function(response){
+      
       if(!(response)){        
         res.status(400).send({
           err: "post does not exists",

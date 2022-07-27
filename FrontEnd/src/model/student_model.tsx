@@ -31,8 +31,8 @@ const deletePost = async (id:String,token:String)=>{
     await StudentApi.deletePost(id,token)
 } 
 
-const updatePost = async (id:String,message:String)=>{
-    await StudentApi.updatePost(id,message)
+const updatePost = async (id:String,message:String,imgURL:String,token:String)=>{
+    await StudentApi.updatePost(id,message,imgURL,token)
 } 
 
 

@@ -52,7 +52,7 @@ const AppEntry: FC= () => {
         const checkAuthentication = async () => {
             try {
                 const userToken = await Credentials.getVerifiedTokens()
-                if(userToken) {
+                if(userToken) {                    
                     dispatch(AuthActions.setUserToken(userToken));
                     dispatch(AuthActions.setIsLoggedIn(true));
                 } else {

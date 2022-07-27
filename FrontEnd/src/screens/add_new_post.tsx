@@ -7,26 +7,34 @@ import ActivityIndicator from "./component/custom_activity_indicator"
 import CustomImagePicker from "./component/custom_image_picker"
 import {NavigationProps} from "../AppEntry";
 
+import store from "../store/store";
 
 const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
+    const userToken = store.getState().auth.userToken
+
     var [sender,setId] = useState<String>("")
     var [message, setMessage] = useState<String>("")
     var [isLoading, setIsLoading] = useState<boolean>(false)
     var [imageUri,setImageUri] = useState<String>("")
     var [userID,setUserId] = useState<String>("")
     var [token,setUserToken] = useState<String>("")
+    React.useEffect(()=>{
+     
+            setId(userToken!.email)
+            setUserId(userToken!._id)
+            setUserToken(userToken!.access_token)
 
+    },[])
     
     const onSave = async () => {
-        sender ="ivan@test.com"
-        userID = "62e017c74a1c86866135664e"
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUwMTdjNzRhMWM4Njg2NjEzNTY2NGUiLCJpYXQiOjE2NTg4NTM5MjEsImV4cCI6MTY1ODg1NDIyMX0.aOd0kka35w9uxAlFWV85aSfz5gqWyZ6deV8qEvx1MyU"
+        sender = sender
+        userID = userID
+        token = token
         setIsLoading(true)
         var student: Post = {
             id: sender,
             message: message,
             imageUrl: imageUri,
-            //neeed to get user id here
             postId:userID
         }
         if(imageUri != ""){

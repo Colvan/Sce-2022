@@ -18,6 +18,9 @@ type StudentListRowProps = {
     post: Post
 }
 
+
+
+
 const StudentListRow: FC<StudentListRowProps> = ({ post }) => {
     return (
         <TouchableHighlight
@@ -68,11 +71,12 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
     }
 
     const logOut = async () => {
-        // const userToken = store.getState().auth.userToken
+        const userToken = store.getState().auth.userToken
         await Credentials.setCredentials(null);
         dispatch(AuthActions.logOut());
     }
 
+    
     return (
         <View style={styles.home_container}>
             <LogOutButton onClick={logOut} ></LogOutButton>

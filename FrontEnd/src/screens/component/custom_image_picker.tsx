@@ -6,11 +6,18 @@ import * as ImagePicker from 'expo-image-picker';
 import colors from "../../constants/colors";
 
 type CustomImagePickerProps = {
-    onImageSelected:(uri:String)=>void
+    onImageSelected:(uri:String)=>void;
+    imageurl:String;
 }
 
-const CustomImagePicker:FC<CustomImagePickerProps> = ({onImageSelected})=>{
-    const [imageUri,setImageUri] = useState("")
+const CustomImagePicker:FC<CustomImagePickerProps> = ({onImageSelected,imageurl})=>{
+    const [imageUri,setImageUri] = useState<String | null>("")
+    React.useEffect(()=>{
+        if (imageurl != ""){
+            setImageUri(imageurl)
+            
+        }
+    },[])
 
     useEffect(()=>{
         requestPermission()

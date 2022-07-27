@@ -15,7 +15,6 @@ const CustomImagePicker:FC<CustomImagePickerProps> = ({onImageSelected,imageurl}
     React.useEffect(()=>{
         if (imageurl != ""){
             setImageUri(imageurl)
-            
         }
     },[])
 

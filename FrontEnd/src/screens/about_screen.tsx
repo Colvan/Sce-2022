@@ -6,26 +6,28 @@ import StudnetModel, { Post } from "../model/student_model"
 import ActivityIndicator from "./component/custom_activity_indicator"
 import CustomImagePicker from "./component/custom_image_picker"
 import {NavigationProps} from "../AppEntry";
+import store from "../store/store";
 
 
 const About: FC<NavigationProps> = ({ navigation, route }) => {
+    const userToken = store.getState().auth.userToken
     const [sender, setId] = useState<String>("")
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [imageUri,setImageUri] = useState<String>("")
     React.useEffect(()=>{
-        if (route.params?.id){
-            setId(route.params.id)
-            setImageUri(route.params.imageURL)      
+        if (userToken!.email){
+            setId(userToken!.email)
+             
           }
     },[])
     const onSave = async () => {
         setIsLoading(true)
-
         if(imageUri != ""){
             console.log("saving image")
             const url = await StudnetModel.uploadImage(imageUri)
             console.log("saving image finish url : " + url) 
         }
+        
         navigation.goBack()
     }
 
@@ -38,7 +40,7 @@ const About: FC<NavigationProps> = ({ navigation, route }) => {
         <ScrollView>
             <View style={styles.conatiner}>
                 <View style={styles.image} >
-                    <CustomImagePicker onImageSelected={onImageSelected}></CustomImagePicker>
+                    <CustomImagePicker onImageSelected={onImageSelected} imageurl={""} ></CustomImagePicker>
                 </View>
                 <Text style={{ height: 40,margin: 12, padding: 10, borderColor: 'grey'}}> Email : {sender}</Text>
 

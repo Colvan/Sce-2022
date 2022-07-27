@@ -57,7 +57,7 @@ const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
         <ScrollView>
             <View style={styles.conatiner}>
                 <View style={styles.image} >
-                    <CustomImagePicker onImageSelected={onImageSelected}></CustomImagePicker>
+                    <CustomImagePicker onImageSelected={onImageSelected} imageurl={""}></CustomImagePicker>
                 </View>
                 <Text style={{ height: 40,margin: 12, padding: 10, borderColor: 'grey'}}> Email : {sender}</Text>
 

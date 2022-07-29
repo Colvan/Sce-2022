@@ -117,16 +117,11 @@ const updatePost = async (
   }
 };
 
-const getUserProfile = async (
-  email: String
-) => {
-  const res = await apiClient.post(
-    "/profile/getProfile",
-    { email: email}
-  );
+const getUserProfile = async (email: String) => {
+  const res = await apiClient.post("/profile/getProfile", { email: email });
   if (res.ok) {
-    console.log(email + "profile  ");
-    return res;
+    console.log(email + " profile  ");
+    return res.data;
   } else {
     console.log(res.data);
 
@@ -134,17 +129,18 @@ const getUserProfile = async (
   }
 };
 
-
 const updateUserProfile = async (
-  firstname:String,
-  lastname:String,
+  firstname: String,
+  lastname: String,
   email: String,
-  imageUrl:String
+  imageUrl: String
 ) => {
-  const res = await apiClient.post(
-    "/profile/updateProfile",
-    { firstname:firstname,lastname:lastname,email: email,imageUrl:imageUrl}
-  );
+  const res = await apiClient.post("/profile/updateProfile", {
+    firstname: firstname,
+    lastname: lastname,
+    email: email,
+    imageUrl: imageUrl,
+  });
   if (res.ok) {
     console.log(email + "profile has been updated ");
   } else {
@@ -155,7 +151,26 @@ const updateUserProfile = async (
 };
 
 
+const createUserProfile = async (
+  firstname: String,
+  lastname: String,
+  email: String,
+  imageUrl: String
+) => {
+  const res = await apiClient.post("/profile/createProfile", {
+    firstname: firstname,
+    lastname: lastname,
+    email: email,
+    imageUrl: imageUrl,
+  });
+  if (res.ok) {
+    console.log(email + "profile has been created ");
+  } else {
+    console.log(res.data);
 
+    console.log("create profile fail");
+  }
+};
 
 export default {
   getAllPosts,
@@ -165,5 +180,6 @@ export default {
   deletePost,
   updatePost,
   getUserProfile,
-  updateUserProfile
+  updateUserProfile,
+  createUserProfile
 };

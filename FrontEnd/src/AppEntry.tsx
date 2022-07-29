@@ -80,10 +80,10 @@ const AppEntry: FC= () => {
 
                 </UpperTab.Navigator>
             ) : (
-                <Tab.Navigator initialRouteName="About" screenOptions={({route}) => ({
+                <Tab.Navigator initialRouteName="Log In Page" screenOptions={({route}) => ({
                     tabBarIcon: ({focused, color, size}) => {
                         let iconName;
-                        if (route.name === 'About') {
+                        if (route.name === 'Log In Page') {
                             iconName = focused ? 'information-circle' : 'information-circle-outline';
                         } else if (route.name === 'HomeStack') {
                             iconName = focused ? 'home' : 'home-outline';

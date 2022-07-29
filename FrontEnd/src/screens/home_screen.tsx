@@ -71,7 +71,6 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
     }
 
     const logOut = async () => {
-        const userToken = store.getState().auth.userToken
         await Credentials.setCredentials(null);
         dispatch(AuthActions.logOut());
     }

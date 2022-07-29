@@ -4,7 +4,7 @@ import AuthModel, {User} from "../model/auth_model"
 import COLORS from "../constants/colors"
 import ActivityIndicator from "./component/custom_activity_indicator"
 import {NavigationProps} from "../AppEntry";
-
+import StudentModel from "../model/student_model"
 
 const RegisterPage: FC<NavigationProps> = ({navigation, route}) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -20,6 +20,7 @@ const RegisterPage: FC<NavigationProps> = ({navigation, route}) => {
         }
         let register = await AuthModel.register(user.email, user.password);
         if (register) {
+            await StudentModel.createUserProfile("","",user.email,"");
             setIsLoading(false)
             return register;
         } else {

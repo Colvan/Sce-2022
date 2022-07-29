@@ -47,14 +47,14 @@ export const updateProfile = async (
  * @param {http response} res
  */
  export const getUserProfile = async (req: Request , res: Response ) => {
-    const email = req.params.email;
+    const email = req.body.email;
     if(!email) {
       return res.status(400).send("no user email provided")
     }
     try {
       const profile = await Profile.find({ email: email })
       if(!profile || profile.length <= 0) {
-        res.status(200).send("No posts by user found")
+        res.status(200).send("No profile for user found")
       } else {
         return res.status(200).send(profile)
       }

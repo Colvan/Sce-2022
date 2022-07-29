@@ -117,6 +117,46 @@ const updatePost = async (
   }
 };
 
+const getUserProfile = async (
+  email: String
+) => {
+  const res = await apiClient.post(
+    "/profile/getProfile",
+    { email: email}
+  );
+  if (res.ok) {
+    console.log(email + "profile  ");
+    return res;
+  } else {
+    console.log(res.data);
+
+    console.log("get profile fail");
+  }
+};
+
+
+const updateUserProfile = async (
+  firstname:String,
+  lastname:String,
+  email: String,
+  imageUrl:String
+) => {
+  const res = await apiClient.post(
+    "/profile/updateProfile",
+    { firstname:firstname,lastname:lastname,email: email,imageUrl:imageUrl}
+  );
+  if (res.ok) {
+    console.log(email + "profile has been updated ");
+  } else {
+    console.log(res.data);
+
+    console.log("update profile fail");
+  }
+};
+
+
+
+
 export default {
   getAllPosts,
   addNewPost,
@@ -124,4 +164,6 @@ export default {
   getPostsByUser,
   deletePost,
   updatePost,
+  getUserProfile,
+  updateUserProfile
 };

@@ -8,6 +8,21 @@ export type Post = {
     postId:String
 }
 
+export type Profile = {
+    firstName:{
+        type: String
+    },
+    lastName:{
+        type: String
+        },
+    imageUrl:{
+        type: String
+    },
+    email:{
+        type: String    
+    }
+}
+
 const getAllPosts = async ()=>{
     const posts = await StudentApi.getAllPosts()
     return posts
@@ -35,6 +50,12 @@ const updatePost = async (id:String,message:String,imgURL:String,token:String)=>
     await StudentApi.updatePost(id,message,imgURL,token)
 } 
 
+const getUserProfile = async (email:String)=>{
+    await StudentApi.getUserProfile(email)
+} 
+const updateUserProfile = async (firstname:String,lastname:String,email:String,imageUrl:String)=>{
+    await StudentApi.updateUserProfile(firstname,lastname,email,imageUrl)
+} 
 
 export default {
     addNewPost,
@@ -42,5 +63,7 @@ export default {
     uploadImage,
     getPostsByUser,
     deletePost,
-    updatePost
+    updatePost,
+    getUserProfile,
+    updateUserProfile
 }

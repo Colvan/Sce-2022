@@ -2,16 +2,13 @@ import mongoose from 'mongoose'
 
 const profileSchema = new mongoose.Schema({
     firstName:{
-        type: String,
-        required: true
+        type: String
     },
     lastName:{
-        type: String,
-        required: true
+        type: String
     },
     imageUrl:{
-        type: String,
-        required: false
+        type: String
     },
     email:{
         type: String,

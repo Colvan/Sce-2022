@@ -19,4 +19,4 @@ const profileSchema = new mongoose.Schema({
     }
 })
 
-export = mongoose.model('Post',profileSchema)
+export = mongoose.model('Profile',profileSchema)

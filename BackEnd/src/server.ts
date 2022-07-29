@@ -29,6 +29,9 @@ app.use("/auth", auth_routes);
 import file_routes from "./routes/file_routes";
 app.use("/file", file_routes);
 
+import profile_route from "./routes/profile_routes"
+app.use("/profile",profile_route)
+
 app.use("/uploads",express.static('uploads'))
 
 import swaggerUI from "swagger-ui-express";

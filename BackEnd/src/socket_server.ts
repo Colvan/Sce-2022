@@ -43,8 +43,7 @@ export const initSocketServer =  async (server: http.Server): Promise<Server> =>
     });
  
     socketServer.on('connection', async (socket) => {
-        console.log("user is added to room " + socket.data.user)
-        await socket.join(socket.data.user)
+        console.log('user connected');
         await socket.join("all");
         commonHandlers(socketServer,socket)
         postHandlers(socketServer,socket)

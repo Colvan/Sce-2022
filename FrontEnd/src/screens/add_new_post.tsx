@@ -45,6 +45,8 @@ const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
         }
         await StudnetModel.addNewPost(student,token)
         setIsLoading(false)
+        setMessage("");
+        setImageUri("");
         navigation.goBack()
     }
 

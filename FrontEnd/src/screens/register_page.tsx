@@ -22,6 +22,8 @@ const RegisterPage: FC<NavigationProps> = ({navigation, route}) => {
         if (register) {
             await StudentModel.createUserProfile("","",user.email,"");
             setIsLoading(false)
+            setEmail("");
+            setPassword("")
             return register;
         } else {
             setIsLoading(false)

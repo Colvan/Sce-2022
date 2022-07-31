@@ -94,7 +94,8 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
     touchablebutton:{
-        paddingLeft:"90%"
+        width:40
+        
     },
     home_container: {
         flex: 1

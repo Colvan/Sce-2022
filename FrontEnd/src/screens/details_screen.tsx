@@ -56,12 +56,6 @@ const Details: FC<NavigationProps> = ({ navigation, route }) => {
 
     const onDelete = async () => {
         setIsLoading(true)
-        // if(imageUri != ""){
-        //     console.log("saving image")
-        //     const url = await StudnetModel.uploadImage(imageUri)
-        //     post.imageUrl = url
-        //     console.log("saving image finish url : " + url) 
-        // }
         await StudnetModel.deletePost(postId,userToken!.access_token)
         navigation.goBack()
     }

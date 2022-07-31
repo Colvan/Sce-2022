@@ -56,7 +56,6 @@ const MyPosts: FC<NavigationProps> = ({ navigation, route }) => {
 
     const reloadData = async ()=>{
         setIsLoading(true)
-        //here will be dynamic array of users posts
         const studentData = await StudentModel.getPostsByUser(userToken!.email)
         setData(studentData)
         setIsLoading(false)

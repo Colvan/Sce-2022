@@ -12,12 +12,12 @@ import store from "../store/store";
 const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
     const userToken = store.getState().auth.userToken
 
-    var [sender,setId] = useState<String>("")
-    var [message, setMessage] = useState<String>("")
-    var [isLoading, setIsLoading] = useState<boolean>(false)
-    var [imageUri,setImageUri] = useState<String>("")
-    var [userID,setUserId] = useState<String>("")
-    var [token,setUserToken] = useState<String>("")
+    const [sender,setId] = useState<String>("")
+    const [message, setMessage] = useState<String>("")
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [imageUri,setImageUri] = useState<String>("")
+    const [userID,setUserId] = useState<String>("")
+    const [token,setUserToken] = useState<String>("")
     React.useEffect(()=>{
      
             setId(userToken!.email)
@@ -27,9 +27,9 @@ const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
     },[])
     
     const onSave = async () => {
-        sender = sender
-        userID = userID
-        token = token
+        setId(sender)
+        setUserId(userID)
+        setUserToken(token)
         setIsLoading(true)
         var student: Post = {
             id: sender,

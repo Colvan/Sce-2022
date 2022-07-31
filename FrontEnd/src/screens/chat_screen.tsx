@@ -7,6 +7,7 @@ import {
     TouchableHighlight,
     TextInput,
 } from "react-native";
+import {AutoScrollFlatList} from "react-native-autoscroll-flatlist";
 import {NavigationProps} from "../AppEntry";
 import io, {Socket} from "socket.io-client";
 import store from "../store/store";
@@ -94,13 +95,13 @@ const Chat: FC<NavigationProps> = ({navigation, route}) => {
     return (
         <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
             <Text>Chat</Text>
-            <FlatList
+            <AutoScrollFlatList
                 data={messages}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) => (
                     <MessageListRow message={item} currentUser={currentUser}/>
                 )}
-            ></FlatList>
+            ></AutoScrollFlatList>
             <View style={{flexDirection: "row"}}>
                 <TextInput
                     style={styles.textInput}

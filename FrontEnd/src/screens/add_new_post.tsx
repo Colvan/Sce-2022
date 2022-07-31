@@ -44,9 +44,9 @@ const AddPost: FC<NavigationProps> = ({ navigation, route }) => {
             console.log("saving image finish url : " + url) 
         }
         await StudnetModel.addNewPost(student,token)
-        setIsLoading(false)
         setMessage("");
         setImageUri("");
+        setIsLoading(false)
         navigation.goBack()
     }
 

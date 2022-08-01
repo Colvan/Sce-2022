@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "sce-2022-front",
-    "slug": "sce-2022-front",
-    "version": "1.0.0",
+    "name": "fighterisr",
+    "slug": "sce-2022",
+    "version": "1.1.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "scheme": "com.sce.sce2022",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

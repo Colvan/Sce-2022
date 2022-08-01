@@ -3,7 +3,6 @@ import {
     View,
     Text,
     StyleSheet,
-    FlatList,
     TouchableHighlight,
     TextInput,
 } from "react-native";
@@ -44,7 +43,6 @@ let messageInput: string;
 
 const Chat: FC<NavigationProps> = ({navigation, route}) => {
     const [messages, setMessages] = useState<Array<messageType>>([]);
-    const [DemoMessages, setDemoMessages] = useState<Array<messageType>>([]);
     // const [messageInput, setMessageInput] = useState<string>()
 
     const socketRef = useRef<Socket>();
@@ -52,13 +50,9 @@ const Chat: FC<NavigationProps> = ({navigation, route}) => {
     const currentUser = userToken!.email;
     const date = new Date();
 
-    const demoConversationArray = [
-        {from: "omri biton", message: "hello im omri", time: date.toLocaleTimeString()},
-        {from: "test@test.com", message: "hello omri", time: date.toLocaleTimeString()},
-    ];
+
 
     useEffect(() => {
-        setDemoMessages(demoConversationArray);
         socketRef.current = io("http://10.0.2.2:3000", {
             auth: {
                 token: "bearer " + userToken!.access_token,
@@ -168,7 +162,7 @@ const styles = StyleSheet.create({
     self_list_row_text_container: {
         justifyContent: "center",
         width: "100%",
-        backgroundColor: '#255C4B'
+        backgroundColor: '#255C4B',
     },
     other_list_row_text_container: {
         justifyContent: "center",
@@ -181,9 +175,11 @@ const styles = StyleSheet.create({
     },
     list_row_id: {
         fontSize: 25,
+        top:-15
     },
     list_row_message: {
-        color: 'white'
+        color: 'white',
+        top:-15
     },
     activity_indicator: {
         width: "100%",

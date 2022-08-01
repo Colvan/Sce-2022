@@ -29,10 +29,11 @@ const MessageListRow: FC<MessageListRowProps> = ({message, currentUser}) => {
                 <View
                     style={[(currentUser === message.from) ? styles.self_list_row_text_container : styles.other_list_row_text_container]}>
                     <Text style={styles.list_row_id}>
-                        <Text style={styles.list_row_name}>Sender: {currentUser=== message.from ? 'Me' : message.from }</Text>
+                        <Text
+                            style={styles.list_row_name}>Sender: {currentUser === message.from ? 'Me' : message.from}</Text>
                     </Text>
                     <Text style={styles.list_row_message}>{message.message}</Text>
-                    <Text style={styles.list_row_message}>{message.time}</Text>
+                    <Text style={styles.list_row_time}>{message.time}</Text>
                 </View>
             </View>
         </TouchableHighlight>
@@ -49,7 +50,6 @@ const Chat: FC<NavigationProps> = ({navigation, route}) => {
     const userToken = store.getState().auth.userToken;
     const currentUser = userToken!.email;
     const date = new Date();
-
 
 
     useEffect(() => {
@@ -102,6 +102,7 @@ const Chat: FC<NavigationProps> = ({navigation, route}) => {
                     placeholder="Message"
                     keyboardType="default"
                     onChangeText={text => messageInput = text}
+
                 ></TextInput>
                 <TouchableHighlight
                     onPress={onSendMessage}
@@ -175,11 +176,14 @@ const styles = StyleSheet.create({
     },
     list_row_id: {
         fontSize: 25,
-        top:-15
+        top: -15
     },
     list_row_message: {
         color: 'white',
-        top:-15
+    },
+    list_row_time: {
+        top: 20,
+        color: 'white'
     },
     activity_indicator: {
         width: "100%",

@@ -77,7 +77,8 @@ const AppEntry: FC = () => {
         <UpperTab.Navigator
           initialRouteName="Home"
           screenOptions={{
-            tabBarActiveTintColor: "white",
+            tabBarActiveTintColor: "tomato",
+            tabBarInactiveTintColor: "gray",
             tabBarIndicatorStyle: {
               backgroundColor: "white",
               height: 2,
@@ -101,22 +102,23 @@ const AppEntry: FC = () => {
         <Tab.Navigator
           initialRouteName="Log In Page"
           screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
-              if (route.name === "Log In Page") {
-                iconName = focused
-                  ? "information-circle"
-                  : "information-circle-outline";
-              } else if (route.name === "HomeStack") {
-                iconName = focused ? "home" : "home-outline";
-              }
-              return <Ionicons name={iconName} size={size} color={color} />;
+            tabBarIcon: ({  color, size }) => {
+              return <Ionicons name="person" size={size} color={color} />;
             },
             tabBarActiveTintColor: "tomato",
             tabBarInactiveTintColor: "gray",
-          })}
+            tabBarStyle: {
+              height: 60,
+              backgroundColor: "#1f436b",
+            },
+            
+            tabBarScrollEnabled: true,
+            tabBarLabelStyle: { fontSize: 13 },
+            tabBarItemStyle: { width: 80 },
+          }
+          )}
         >
-          <Tab.Screen name="Log In Page" component={logInScreen}></Tab.Screen>
+          <Tab.Screen  name="Sign In" component={logInScreen}></Tab.Screen>
           <Tab.Screen name="Register" component={registerScreen}></Tab.Screen>
         </Tab.Navigator>
       )}

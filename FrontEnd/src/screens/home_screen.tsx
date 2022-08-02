@@ -59,6 +59,7 @@ const LogOutButton: FC<{ onClick: () => void }> = ({ onClick }) => {
     >
       <Ionicons name={"log-out-outline"} size={40} color={"gray"} />
     </TouchableHighlight>
+    
   );
 };
 
@@ -103,14 +104,13 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   touchablebutton: {
     width: 40,
+    left:370
   },
   home_container: {
     flex: 1,
   },
   list_row_container: {
     height: 150,
-    // width: "100%",
-    // backgroundColor: "grey",
     flexDirection: "row",
     elevation: 4,
     borderRadius: 3,

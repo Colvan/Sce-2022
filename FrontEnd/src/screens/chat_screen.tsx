@@ -156,11 +156,12 @@ const styles = StyleSheet.create({
   userImageWrapper: {
     paddingBottom: 15,
     paddingTop: 15,
+    
   },
   userImage: {
     width: 50,
     height: 50,
-    borderRadius: 2,
+    borderRadius: 25,
   },
   textSection: {
     flexDirection: "column",

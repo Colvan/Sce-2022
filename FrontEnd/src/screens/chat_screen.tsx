@@ -122,6 +122,7 @@ const Chat: FC<NavigationProps> = ({ navigation, route }) => {
           <TextInput
             style={styles.textInput}
             placeholder="Message"
+            placeholderTextColor="grey"
             keyboardType="default"
             onChangeText={(text) => (messageInput = text)}
           ></TextInput>

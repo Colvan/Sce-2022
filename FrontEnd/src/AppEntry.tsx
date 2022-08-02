@@ -83,7 +83,7 @@ const AppEntry: FC = () => {
               height: 2,
             },
             tabBarScrollEnabled: true,
-            tabBarLabelStyle: { fontSize: 15 },
+            tabBarLabelStyle: { fontSize: 13 },
             tabBarItemStyle: { width: 80 },
             tabBarStyle: {
               height: 60,

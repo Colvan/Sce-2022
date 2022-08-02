@@ -5,7 +5,9 @@ import {
   StyleSheet,
   TouchableHighlight,
   TextInput,
-  TouchableOpacity,Image
+  TouchableOpacity,
+  Image,
+  ImageBackground,
 } from "react-native";
 import { AutoScrollFlatList } from "react-native-autoscroll-flatlist";
 import { NavigationProps } from "../AppEntry";
@@ -35,20 +37,18 @@ const MessageListRow: FC<MessageListRowProps> = ({ message, currentUser }) => {
           : styles.other_list_row_text_container,
       ]}
     >
-      <TouchableOpacity style={styles.innerOppacity}>
         <View style={styles.userInfo}>
           <View style={styles.userImageWrapper}>
             <Image style={styles.userImage} source={{ uri: message.imgUrl }} />
           </View>
           <View style={styles.textSection}>
-            <View style = {styles.UserInfoText}>
-              <Text style = {styles.UserName}>{message.from}</Text>
+            <View style={styles.UserInfoText}>
+              <Text style={styles.UserName}>{message.from}</Text>
               <Text>{message.time}</Text>
             </View>
             <Text>{message.message}</Text>
           </View>
         </View>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -106,29 +106,34 @@ const Chat: FC<NavigationProps> = ({ navigation, route }) => {
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Chat</Text>
-      <AutoScrollFlatList
-        data={messages}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => (
-          <MessageListRow message={item} currentUser={currentUser} />
-        )}
-      ></AutoScrollFlatList>
-      <View style={{ flexDirection: "row" }}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Message"
-          keyboardType="default"
-          onChangeText={(text) => (messageInput = text)}
-        ></TextInput>
-        <TouchableHighlight
-          onPress={onSendMessage}
-          underlayColor={COLORS.clickBackground}
-          style={styles.button}
-        >
-          <Text style={styles.button_text}>Send</Text>
-        </TouchableHighlight>
-      </View>
+      <ImageBackground
+        source={require("../../assets/wp4410714.jpg")}
+        resizeMode="cover"
+        style={{ flex: 1, justifyContent: "center" }}
+      >
+        <AutoScrollFlatList
+          data={messages}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <MessageListRow message={item} currentUser={currentUser} />
+          )}
+        ></AutoScrollFlatList>
+        <View style={{ flexDirection: "row" }}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Message"
+            keyboardType="default"
+            onChangeText={(text) => (messageInput = text)}
+          ></TextInput>
+          <TouchableHighlight
+            onPress={onSendMessage}
+            underlayColor={COLORS.clickBackground}
+            style={styles.button}
+          >
+            <Text style={styles.button_text}>Send</Text>
+          </TouchableHighlight>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -142,84 +147,77 @@ const styles = StyleSheet.create({
     paddingRight: "20px",
     backgroundColor: "#ffffff",
   },
-  innerOppacity: {
-    width: "100%",
-  },
+
   userInfo: {
     flexDirection: "row",
     justifyContent: "space-between",
+    
   },
-  userImageWrapper:{
-    paddingBottom:15,
-    paddingTop:15,
+  userImageWrapper: {
+    paddingBottom: 15,
+    paddingTop: 15,
   },
-  userImage:{
+  userImage: {
     width: 50,
     height: 50,
-    borderRadius: 2
+    borderRadius: 2,
   },
-  textSection:{
+  textSection: {
     flexDirection: "column",
     justifyContent: "center",
     padding: 15,
     paddingLeft: 0,
     marginLeft: 10,
     width: 350,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc" 
-
   },
-  UserInfoText:{
+  UserInfoText: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 5,
-    
   },
-  UserName:{
+  UserName: {
     fontSize: 14,
   },
-  PostTime:{
+  PostTime: {
     fontSize: 12,
-    color:"#000000",
+    color: "#000000",
   },
-  MessageText:{
+  MessageText: {
     fontSize: 14,
-    color: "#333333"
+    color: "#333333",
   },
 
-  
   textInput: {
+    color:"white",
     height: 60,
     marginRight: 5,
     borderWidth: 1,
     padding: 10,
     borderColor: "grey",
     width: "75%",
+    backgroundColor:"#2a3942"
   },
   button: {
-    backgroundColor: "rgb(0, 132, 255)",
+    backgroundColor: "#202c33",
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
-    width:90
+    width: 90,
   },
   button_text: {
     fontSize: 25,
     color: "white",
     textAlign: "center",
-
   },
 
   self_list_row_text_container: {
-    backgroundColor: "rgb(0, 132, 255)",
+    backgroundColor: "#005c4b",
+    borderRadius: 20,
   },
   other_list_row_text_container: {
-    backgroundColor: "white",
+    backgroundColor: "#202c33",
+    borderRadius: 20,
   },
-
-
- 
-
 });
 
 export default Chat;

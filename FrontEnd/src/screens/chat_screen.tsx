@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     padding: 15,
     paddingLeft: 0,
     marginLeft: 10,
-    width: 300,
+    width: 350,
     borderBottomWidth: 1,
     borderBottomColor: "#cccccc" 
 
@@ -186,29 +186,29 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#333333"
   },
+
+  
   textInput: {
-    height: 40,
-    margin: 12,
+    height: 60,
+    marginRight: 5,
     borderWidth: 1,
     padding: 10,
     borderColor: "grey",
-    width: "70%",
+    width: "75%",
   },
   button: {
-    margin: 12,
-    backgroundColor: "grey",
-    borderRadius: 5,
-    width: "20%",
+    backgroundColor: "rgb(0, 132, 255)",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    width:90
   },
   button_text: {
-    fontSize: 30,
+    fontSize: 25,
     color: "white",
     textAlign: "center",
-    marginTop: 3,
-    marginBottom: 3,
+
   },
-
-
 
   self_list_row_text_container: {
     backgroundColor: "rgb(0, 132, 255)",

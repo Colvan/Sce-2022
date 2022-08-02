@@ -118,8 +118,8 @@ const AppEntry: FC = () => {
           }
           )}
         >
-          <Tab.Screen  name="Sign In" component={logInScreen}></Tab.Screen>
-          <Tab.Screen name="Register" component={registerScreen}></Tab.Screen>
+          <Tab.Screen options={{headerStyle:{backgroundColor:"#1f436b" } ,headerTintColor: 'tomato'}} name="Sign In" component={logInScreen}></Tab.Screen>
+          <Tab.Screen options={{headerStyle:{backgroundColor:"#1f436b" } ,headerTintColor: 'tomato'}} name="Register" component={registerScreen}></Tab.Screen>
         </Tab.Navigator>
       )}
     </NavigationContainer>

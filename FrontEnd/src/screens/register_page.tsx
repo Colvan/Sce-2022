@@ -68,9 +68,6 @@ const RegisterPage: FC<NavigationProps> = ({ navigation, route }) => {
           <Text style={styles.button_text}>Register</Text>
         </TouchableHighlight>
         <Text  style={{ textAlign: "center", top: 5 }}>Register Via Google</Text>
-        <TouchableHighlight style={styles.google_icon}>
-          <Image source={require("../../assets/google.png")}></Image>
-        </TouchableHighlight>
       </View>
     </ScrollView>
   );

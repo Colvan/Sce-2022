@@ -1,4 +1,3 @@
-import { userToken } from "../store/authSlice"
 import StudentApi from "./student_api"
 
 export type Post = {

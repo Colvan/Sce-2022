@@ -1,10 +1,5 @@
-import React, { FC, useState, useRef, useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  Image,
   TouchableHighlight,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
@@ -25,30 +20,13 @@ import Chat from "./screens/chat_screen";
 import MyPostsScreen from "./screens/my_posts_screen";
 import { useAppDispatch, useAppSelector } from "./store/storeHooks";
 import { AuthActions } from "./store/authSlice";
-import store from "./store/store";
 
 const Tab = createBottomTabNavigator();
-
-const HomeStack = createNativeStackNavigator();
-
 const UpperTab = createMaterialTopTabNavigator();
 
 export type NavigationProps = {
   navigation: any;
   route: any;
-};
-
-const ToBarAddButton: FC<{ onClick: () => void }> = ({ onClick }) => {
-  return (
-    <TouchableHighlight
-      onPress={() => {
-        onClick();
-      }}
-      underlayColor={COLORS.clickBackground}
-    >
-      <Ionicons name={"add-outline"} size={40} color={"gray"} />
-    </TouchableHighlight>
-  );
 };
 
 const AppEntry: FC = () => {

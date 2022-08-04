@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react"
-import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView } from "react-native"
+import { View, Text, StyleSheet, TextInput, TouchableHighlight, ScrollView } from "react-native"
 
 import COLORS from "../constants/colors"
 import StudnetModel, { Post } from "../model/student_model"

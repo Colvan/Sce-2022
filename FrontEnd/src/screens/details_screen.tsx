@@ -1,5 +1,5 @@
 import React,{FC, useState} from "react"
-import { View, Text, StyleSheet, Image, TextInput, TouchableHighlight, ScrollView } from "react-native"
+import { View, Text, StyleSheet, TextInput, TouchableHighlight, ScrollView } from "react-native"
 import {NavigationProps} from "../AppEntry";
 import CustomImagePicker from "./component/custom_image_picker"
 import ActivityIndicator from "./component/custom_activity_indicator"

@@ -7,11 +7,9 @@ import {
   TextInput,
   TouchableHighlight,
   ScrollView,
-  TouchableOpacity,
 } from "react-native";
 import AuthModel, { User } from "../model/auth_model";
 import COLORS from "../constants/colors";
-import ActivityIndicator from "./component/custom_activity_indicator";
 import { NavigationProps } from "../AppEntry";
 import StudentModel from "../model/student_model";
 

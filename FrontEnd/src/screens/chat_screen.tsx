@@ -37,18 +37,23 @@ const MessageListRow: FC<MessageListRowProps> = ({ message, currentUser }) => {
           : styles.other_list_row_text_container,
       ]}
     >
-        <View style={styles.userInfo}>
-          <View style={styles.userImageWrapper}>
+      <View style={styles.userInfo}>
+        <View style={styles.userImageWrapper}>
+          {(message.imgUrl == "" || message.imgUrl == " ") && (
+            <Image style={styles.userImage} source={require("../../assets/avatar.jpeg") } />
+          )}
+          {(message.imgUrl != "" && message.imgUrl != " ") && (
             <Image style={styles.userImage} source={{ uri: message.imgUrl }} />
-          </View>
-          <View style={styles.textSection}>
-            <View style={styles.UserInfoText}>
-              <Text style={styles.UserName}>{message.from}</Text>
-              <Text>{message.time}</Text>
-            </View>
-            <Text>{message.message}</Text>
-          </View>
+          )}
         </View>
+        <View style={styles.textSection}>
+          <View style={styles.UserInfoText}>
+            <Text style={styles.UserName}>{message.from}</Text>
+            <Text>{message.time}</Text>
+          </View>
+          <Text>{message.message}</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -152,12 +157,10 @@ const styles = StyleSheet.create({
   userInfo: {
     flexDirection: "row",
     justifyContent: "space-between",
-    
   },
   userImageWrapper: {
     paddingBottom: 15,
     paddingTop: 15,
-    
   },
   userImage: {
     width: 50,
@@ -190,14 +193,14 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    color:"white",
+    color: "white",
     height: 60,
     marginRight: 5,
     borderWidth: 1,
     padding: 10,
     borderColor: "grey",
     width: "75%",
-    backgroundColor:"#2a3942"
+    backgroundColor: "#2a3942",
   },
   button: {
     backgroundColor: "#202c33",

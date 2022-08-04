@@ -114,9 +114,15 @@ const styles = StyleSheet.create({
         borderColor: 'grey'
     },
     button: {
-        margin: 12,
-        backgroundColor: 'grey',
-        borderRadius: 5
+        width: "80%",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 20,
+        backgroundColor: "rgb(33, 150, 243)",
+        left: 40,
+        bottom:25
     },
     button_text: {
         fontSize: 30,

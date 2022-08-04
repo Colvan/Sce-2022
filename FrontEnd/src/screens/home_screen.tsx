@@ -57,7 +57,7 @@ const LogOutButton: FC<{ onClick: () => void }> = ({ onClick }) => {
       }}
       underlayColor={COLORS.clickBackground}
     >
-      <Ionicons name={"log-out-outline"} size={40} color={"gray"} />
+      <Ionicons name={"log-out-outline"} size={40} color={"rgb(33, 150, 243)"} />
     </TouchableHighlight>
     
   );
@@ -104,7 +104,8 @@ const Home: FC<NavigationProps> = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   touchablebutton: {
     width: 40,
-    left:370
+    left:370,
+    
   },
   home_container: {
     flex: 1,

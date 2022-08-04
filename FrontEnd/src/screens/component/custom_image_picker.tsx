@@ -23,7 +23,6 @@ const CustomImagePicker:FC<CustomImagePickerProps> = ({onImageSelected,imageurl}
     },[])
 
     const requestPermission = async ()=>{
-        // const res = await ImagePicker.requestCameraPermissionsAsync()
         const res = await ImagePicker.requestMediaLibraryPermissionsAsync()
         if (!res.granted){
             alert("please give camera permission")

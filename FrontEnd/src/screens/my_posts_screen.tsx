@@ -100,8 +100,6 @@ const styles = StyleSheet.create({
     },
     list_row_container: {
         height: 150,
-        // width: "100%",
-        // backgroundColor: "grey",
         flexDirection: "row",
         elevation: 4,
         borderRadius: 3,

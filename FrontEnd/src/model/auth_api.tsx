@@ -36,7 +36,6 @@ const logOut = async (accessToken: string) => {
     )
     console.log(`this is the access at api`)
     console.log(accessToken)
-    // console.log(`res in logout ${res.data}`)
     if (res.ok) {
         console.log("user logged out");
         return res.data;
